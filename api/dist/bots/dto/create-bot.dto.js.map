@@ -1,0 +1,1 @@
+{"version":3,"file":"create-bot.dto.js","sourceRoot":"","sources":["../../../src/bots/dto/create-bot.dto.ts"],"names":[],"mappings":";;;;;;;;;AAAA,OAAO,EAAE,QAAQ,EAAE,OAAO,EAAE,MAAM,iBAAiB,CAAC;AAEpD,MAAM,OAAO,YAAY;IAKvB,KAAK,CAAU;CAChB;AADC;IAJC,QAAQ,EAAE;IACV,OAAO,CAAC,sBAAsB,EAAE;QAC/B,OAAO,EAAE,oDAAoD;KAC9D,CAAC;;2CACa"}

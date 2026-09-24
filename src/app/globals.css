@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@import "@fontsource-variable/vazirmatn/wght.css";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+
+  /* Brand palette */
+  --color-brand-blue: #2f6feb;
+  --color-brand-blue-dark: #1e3a8a;
+  --color-brand-ink: #0f172a;
+  --color-brand-accent: #ff6a39;
+  --color-brand-accent-dark: #e2521f;
+  --color-brand-teal: #12b3a1;
+  --color-brand-bg-warm: #fff8f0;
+  --color-brand-bg-cool: #f2f6ff;
+  --color-brand-muted: #5b6478;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand-blue: var(--color-brand-blue);
+  --color-brand-blue-dark: var(--color-brand-blue-dark);
+  --color-brand-ink: var(--color-brand-ink);
+  --color-brand-accent: var(--color-brand-accent);
+  --color-brand-accent-dark: var(--color-brand-accent-dark);
+  --color-brand-teal: var(--color-brand-teal);
+  --color-brand-bg-warm: var(--color-brand-bg-warm);
+  --color-brand-bg-cool: var(--color-brand-bg-cool);
+  --color-brand-muted: var(--color-brand-muted);
+  --font-sans: "Vazirmatn Variable", "Vazirmatn", Tahoma, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float-y 4.5s ease-in-out infinite;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s ease-out both;
+}

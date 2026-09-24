@@ -1,0 +1,17 @@
+import * as Prisma from './internal/prismaNamespaceBrowser.js';
+export { Prisma };
+export * as $Enums from './enums.js';
+export * from './enums.js';
+export type AdminUser = Prisma.AdminUserModel;
+export type Business = Prisma.BusinessModel;
+export type User = Prisma.UserModel;
+export type Product = Prisma.ProductModel;
+export type FaqEntry = Prisma.FaqEntryModel;
+export type LookupEntry = Prisma.LookupEntryModel;
+export type Customer = Prisma.CustomerModel;
+export type FormDef = Prisma.FormDefModel;
+export type FormField = Prisma.FormFieldModel;
+export type FormSubmission = Prisma.FormSubmissionModel;
+export type Bot = Prisma.BotModel;
+export type Broadcast = Prisma.BroadcastModel;
+export type UnansweredQuestion = Prisma.UnansweredQuestionModel;

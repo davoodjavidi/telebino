@@ -1,0 +1,35 @@
+import { OnModuleInit } from "@nestjs/common";
+import { PrismaService } from "../prisma/prisma.service.js";
+import { CustomersService } from "../customers/customers.service.js";
+import { FormsService } from "../forms/forms.service.js";
+import { UploadsService } from "../uploads/uploads.service.js";
+import { LookupService, type LookupStatusChangedPayload } from "../lookup/lookup.service.js";
+import type { Bot as BotRecord } from "../generated/prisma/client.js";
+export declare class BotRuntimeService implements OnModuleInit {
+    private readonly prisma;
+    private readonly customers;
+    private readonly forms;
+    private readonly lookup;
+    private readonly uploads;
+    private readonly logger;
+    private readonly instances;
+    private readonly sessions;
+    constructor(prisma: PrismaService, customers: CustomersService, forms: FormsService, lookup: LookupService, uploads: UploadsService);
+    onModuleInit(): Promise<void>;
+    startBot(botRecord: BotRecord): Promise<void>;
+    stopBot(botId: string): void;
+    broadcastToCustomer(businessId: string, telegramUserId: string, text: string): Promise<boolean>;
+    handleLookupStatusChanged(payload: LookupStatusChangedPayload): Promise<void>;
+    private handleMessage;
+    private sendWelcome;
+    private buildMainMenu;
+    private handleMenuSelection;
+    private sendProductCard;
+    private handleCallbackQuery;
+    private generateOrderIdentifier;
+    private resolveLookup;
+    private askFormField;
+    private continueForm;
+    private answerFromFaq;
+    private safeSend;
+}
