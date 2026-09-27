@@ -31,77 +31,77 @@ export declare class LookupService {
         } | null;
     } & {
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         businessId: string;
+        productId: string | null;
+        status: string;
         kind: import("../generated/prisma/enums.js").LookupKind;
         identifier: string;
-        status: string;
         customerPhone: string | null;
         customerTelegramUserId: string | null;
         note: string | null;
         notifyOnUpdate: boolean;
-        productId: string | null;
-        createdAt: Date;
-        updatedAt: Date;
     })[]>;
     find(businessId: string, kind: "ORDER" | "ACCESS", identifier: string): import("../generated/prisma/models.js").Prisma__LookupEntryClient<{
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         businessId: string;
+        productId: string | null;
+        status: string;
         kind: import("../generated/prisma/enums.js").LookupKind;
         identifier: string;
-        status: string;
         customerPhone: string | null;
         customerTelegramUserId: string | null;
         note: string | null;
         notifyOnUpdate: boolean;
-        productId: string | null;
-        createdAt: Date;
-        updatedAt: Date;
     } | null, null, import("@prisma/client/runtime/client").DefaultArgs, {
         omit: import("../generated/prisma/internal/prismaNamespace.js").GlobalOmitConfig | undefined;
     }>;
     create(businessId: string, dto: UpsertLookupDto): import("../generated/prisma/models.js").Prisma__LookupEntryClient<{
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         businessId: string;
+        productId: string | null;
+        status: string;
         kind: import("../generated/prisma/enums.js").LookupKind;
         identifier: string;
-        status: string;
         customerPhone: string | null;
         customerTelegramUserId: string | null;
         note: string | null;
         notifyOnUpdate: boolean;
-        productId: string | null;
-        createdAt: Date;
-        updatedAt: Date;
     }, never, import("@prisma/client/runtime/client").DefaultArgs, {
         omit: import("../generated/prisma/internal/prismaNamespace.js").GlobalOmitConfig | undefined;
     }>;
     update(businessId: string, id: string, dto: UpsertLookupDto): Promise<{
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         businessId: string;
+        productId: string | null;
+        status: string;
         kind: import("../generated/prisma/enums.js").LookupKind;
         identifier: string;
-        status: string;
         customerPhone: string | null;
         customerTelegramUserId: string | null;
         note: string | null;
         notifyOnUpdate: boolean;
-        productId: string | null;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     markOrderPaidAndGrantAccess(businessId: string, id: string): Promise<{
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         businessId: string;
+        productId: string | null;
+        status: string;
         kind: import("../generated/prisma/enums.js").LookupKind;
         identifier: string;
-        status: string;
         customerPhone: string | null;
         customerTelegramUserId: string | null;
         note: string | null;
         notifyOnUpdate: boolean;
-        productId: string | null;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     remove(businessId: string, id: string): Promise<{
         deleted: boolean;

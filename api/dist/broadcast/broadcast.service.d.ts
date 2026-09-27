@@ -8,10 +8,10 @@ export declare class BroadcastService {
     constructor(prisma: PrismaService, runtime: BotRuntimeService);
     list(businessId: string): import("../generated/prisma/internal/prismaNamespace.js").PrismaPromise<{
         id: string;
-        businessId: string;
-        status: import("../generated/prisma/enums.js").BroadcastStatus;
         createdAt: Date;
         updatedAt: Date;
+        businessId: string;
+        status: import("../generated/prisma/enums.js").BroadcastStatus;
         text: string;
         mediaUrl: string | null;
         sentCount: number;
@@ -19,10 +19,10 @@ export declare class BroadcastService {
     }[]>;
     create(businessId: string, dto: CreateBroadcastDto): Promise<{
         id: string;
-        businessId: string;
-        status: import("../generated/prisma/enums.js").BroadcastStatus;
         createdAt: Date;
         updatedAt: Date;
+        businessId: string;
+        status: import("../generated/prisma/enums.js").BroadcastStatus;
         text: string;
         mediaUrl: string | null;
         sentCount: number;

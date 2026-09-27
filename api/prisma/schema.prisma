@@ -283,3 +283,18 @@ model UnansweredQuestion {
 
   @@index([businessId])
 }
+
+/// Messages sent from the public "contact us" page. Not tied to a business —
+/// visitors don't need an account to reach us.
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  email     String?
+  topic     String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}

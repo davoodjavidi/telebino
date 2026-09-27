@@ -23,7 +23,8 @@ export const ModelName = {
     FormSubmission: 'FormSubmission',
     Bot: 'Bot',
     Broadcast: 'Broadcast',
-    UnansweredQuestion: 'UnansweredQuestion'
+    UnansweredQuestion: 'UnansweredQuestion',
+    ContactMessage: 'ContactMessage'
 };
 export const TransactionIsolationLevel = runtime.makeStrictEnum({
     ReadUncommitted: 'ReadUncommitted',
@@ -167,6 +168,16 @@ export const UnansweredQuestionScalarFieldEnum = {
     businessId: 'businessId',
     question: 'question',
     askedAt: 'askedAt'
+};
+export const ContactMessageScalarFieldEnum = {
+    id: 'id',
+    name: 'name',
+    phone: 'phone',
+    email: 'email',
+    topic: 'topic',
+    message: 'message',
+    isRead: 'isRead',
+    createdAt: 'createdAt'
 };
 export const SortOrder = {
     asc: 'asc',

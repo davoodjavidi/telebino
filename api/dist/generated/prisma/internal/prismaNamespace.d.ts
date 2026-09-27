@@ -175,6 +175,7 @@ export declare const ModelName: {
     readonly Bot: "Bot";
     readonly Broadcast: "Broadcast";
     readonly UnansweredQuestion: "UnansweredQuestion";
+    readonly ContactMessage: "ContactMessage";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<{
@@ -187,7 +188,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "adminUser" | "business" | "user" | "product" | "courseLesson" | "courseAccess" | "faqEntry" | "lookupEntry" | "customer" | "formDef" | "formField" | "formSubmission" | "bot" | "broadcast" | "unansweredQuestion";
+        modelProps: "adminUser" | "business" | "user" | "product" | "courseLesson" | "courseAccess" | "faqEntry" | "lookupEntry" | "customer" | "formDef" | "formField" | "formSubmission" | "bot" | "broadcast" | "unansweredQuestion" | "contactMessage";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
@@ -1301,6 +1302,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 };
             };
         };
+        ContactMessage: {
+            payload: Prisma.$ContactMessagePayload<ExtArgs>;
+            fields: Prisma.ContactMessageFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.ContactMessageFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMessagePayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.ContactMessageFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMessagePayload>;
+                };
+                findFirst: {
+                    args: Prisma.ContactMessageFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMessagePayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.ContactMessageFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMessagePayload>;
+                };
+                findMany: {
+                    args: Prisma.ContactMessageFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMessagePayload>[];
+                };
+                create: {
+                    args: Prisma.ContactMessageCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMessagePayload>;
+                };
+                createMany: {
+                    args: Prisma.ContactMessageCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.ContactMessageCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMessagePayload>[];
+                };
+                delete: {
+                    args: Prisma.ContactMessageDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMessagePayload>;
+                };
+                update: {
+                    args: Prisma.ContactMessageUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMessagePayload>;
+                };
+                deleteMany: {
+                    args: Prisma.ContactMessageDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.ContactMessageUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.ContactMessageUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMessagePayload>[];
+                };
+                upsert: {
+                    args: Prisma.ContactMessageUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactMessagePayload>;
+                };
+                aggregate: {
+                    args: Prisma.ContactMessageAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateContactMessage>;
+                };
+                groupBy: {
+                    args: Prisma.ContactMessageGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.ContactMessageGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.ContactMessageCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.ContactMessageCountAggregateOutputType> | number;
+                };
+            };
+        };
     };
 } & {
     other: {
@@ -1484,6 +1559,17 @@ export declare const UnansweredQuestionScalarFieldEnum: {
     readonly askedAt: "askedAt";
 };
 export type UnansweredQuestionScalarFieldEnum = (typeof UnansweredQuestionScalarFieldEnum)[keyof typeof UnansweredQuestionScalarFieldEnum];
+export declare const ContactMessageScalarFieldEnum: {
+    readonly id: "id";
+    readonly name: "name";
+    readonly phone: "phone";
+    readonly email: "email";
+    readonly topic: "topic";
+    readonly message: "message";
+    readonly isRead: "isRead";
+    readonly createdAt: "createdAt";
+};
+export type ContactMessageScalarFieldEnum = (typeof ContactMessageScalarFieldEnum)[keyof typeof ContactMessageScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";
@@ -1582,6 +1668,7 @@ export type GlobalOmitConfig = {
     bot?: Prisma.BotOmit;
     broadcast?: Prisma.BroadcastOmit;
     unansweredQuestion?: Prisma.UnansweredQuestionOmit;
+    contactMessage?: Prisma.ContactMessageOmit;
 };
 export type LogLevel = 'info' | 'query' | 'warn' | 'error';
 export type LogDefinition = {

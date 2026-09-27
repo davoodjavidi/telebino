@@ -401,6 +401,34 @@ export const broadcastApi = {
 };
 
 // ---------------------------------------------------------------------------
+// Contact (public — no auth)
+// ---------------------------------------------------------------------------
+
+export type ContactTopic = "SALES" | "SUPPORT" | "BILLING" | "PARTNERSHIP" | "OTHER";
+
+export type ContactMessageInput = {
+  name: string;
+  phone: string;
+  email?: string;
+  topic: ContactTopic;
+  message: string;
+  /** Honeypot — must stay empty for real users. */
+  website?: string;
+};
+
+export type ContactMessage = Omit<ContactMessageInput, "website" | "email"> & {
+  id: string;
+  email: string | null;
+  isRead: boolean;
+  createdAt: string;
+};
+
+export const contactApi = {
+  send: (data: ContactMessageInput) =>
+    request<{ sent: boolean }>("/contact", { method: "POST", body: JSON.stringify(data) }),
+};
+
+// ---------------------------------------------------------------------------
 // Platform admin (separate token/session from the business-owner panel)
 // ---------------------------------------------------------------------------
 
@@ -463,4 +491,10 @@ export const adminApiClient = {
       body: JSON.stringify(data),
     }),
   stats: () => adminApi<PlatformStats>("/admin/stats"),
+  listContactMessages: () => adminApi<ContactMessage[]>("/admin/contact-messages"),
+  setContactMessageRead: (id: string, isRead: boolean) =>
+    adminApi<ContactMessage>(`/admin/contact-messages/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ isRead }),
+    }),
 };

@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { BarChart3, Building2, LogOut, ShieldCheck } from "lucide-react";
+import { BarChart3, Building2, Inbox, LogOut, ShieldCheck } from "lucide-react";
 import { type AdminAccount, adminAuthApi, adminTokenStorage, ApiError } from "@/lib/api";
 import { AdminContext } from "@/lib/admin-context";
 
 const navItems = [
   { href: "/admin", label: "داشبورد", icon: BarChart3 },
   { href: "/admin/businesses", label: "کسب‌وکارها", icon: Building2 },
+  { href: "/admin/messages", label: "پیام‌های تماس", icon: Inbox },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
