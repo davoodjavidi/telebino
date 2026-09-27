@@ -1,10 +1,24 @@
 "use client";
 
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
-import { Plus, Trash2 } from "lucide-react";
-import { ApiError, productsApi, uploadsApi, type Product } from "@/lib/api";
+import { ChevronDown, Plus, Trash2 } from "lucide-react";
+import {
+  ApiError,
+  courseLessonsApi,
+  productsApi,
+  uploadsApi,
+  type CourseLesson,
+  type Product,
+} from "@/lib/api";
 import { PageHeader } from "@/components/page-header";
 import { Button, Card, EmptyState, ErrorText, Input, Label, Textarea } from "@/components/ui";
+
+const LESSON_STATUS_LABELS: Record<CourseLesson["status"], string> = {
+  PENDING: "⏳ در صف پردازش",
+  PROCESSING: "⏳ در حال پردازش",
+  READY: "✅ آماده پخش",
+  FAILED: "❌ خطا در پردازش",
+};
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -18,6 +32,12 @@ export default function ProductsPage() {
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+
+  const [expandedProductId, setExpandedProductId] = useState<string | null>(null);
+  const [lessons, setLessons] = useState<CourseLesson[]>([]);
+  const [lessonTitle, setLessonTitle] = useState("");
+  const [lessonUploading, setLessonUploading] = useState(false);
+  const [lessonError, setLessonError] = useState<string | null>(null);
 
   function load() {
     productsApi
@@ -70,6 +90,49 @@ export default function ProductsPage() {
   async function handleDelete(id: string) {
     await productsApi.remove(id);
     load();
+  }
+
+  async function loadLessons(productId: string) {
+    const data = await courseLessonsApi.list(productId);
+    setLessons(data);
+  }
+
+  async function toggleLessons(productId: string) {
+    if (expandedProductId === productId) {
+      setExpandedProductId(null);
+      return;
+    }
+    setLessonError(null);
+    setLessonTitle("");
+    await loadLessons(productId);
+    setExpandedProductId(productId);
+  }
+
+  async function handleLessonUpload(e: FormEvent, productId: string) {
+    e.preventDefault();
+    const fileInput = (e.target as HTMLFormElement).elements.namedItem("video") as HTMLInputElement;
+    const file = fileInput.files?.[0];
+    if (!file) {
+      setLessonError("یک فایل ویدیو انتخاب کنید");
+      return;
+    }
+    setLessonError(null);
+    setLessonUploading(true);
+    try {
+      await courseLessonsApi.upload(productId, lessonTitle, lessons.length, file);
+      setLessonTitle("");
+      fileInput.value = "";
+      await loadLessons(productId);
+    } catch (err) {
+      setLessonError(err instanceof ApiError ? err.message : "آپلود ویدیو انجام نشد");
+    } finally {
+      setLessonUploading(false);
+    }
+  }
+
+  async function handleLessonDelete(productId: string, lessonId: string) {
+    await courseLessonsApi.remove(productId, lessonId);
+    await loadLessons(productId);
   }
 
   return (
@@ -144,32 +207,95 @@ export default function ProductsPage() {
           <EmptyState text="هنوز محصولی اضافه نشده است." />
         ) : (
           products.map((p) => (
-            <Card key={p.id} className="flex items-center justify-between !p-4">
-              <div className="flex items-center gap-3">
-                {p.imageUrl && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={p.imageUrl}
-                    alt={p.name}
-                    className="h-12 w-12 rounded-lg border border-slate-200 object-cover"
-                  />
-                )}
-                <div>
-                  <p className="text-sm font-extrabold text-brand-ink">{p.name}</p>
-                  {p.description && <p className="mt-0.5 text-xs text-brand-muted">{p.description}</p>}
-                  {p.price && (
-                    <p className="mt-1 text-xs font-bold text-brand-blue">
-                      {p.price.toLocaleString("fa-IR")} تومان
-                    </p>
+            <Card key={p.id} className="!p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  {p.imageUrl && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={p.imageUrl}
+                      alt={p.name}
+                      className="h-12 w-12 rounded-lg border border-slate-200 object-cover"
+                    />
                   )}
+                  <div>
+                    <p className="text-sm font-extrabold text-brand-ink">{p.name}</p>
+                    {p.description && <p className="mt-0.5 text-xs text-brand-muted">{p.description}</p>}
+                    {p.price && (
+                      <p className="mt-1 text-xs font-bold text-brand-blue">
+                        {p.price.toLocaleString("fa-IR")} تومان
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => toggleLessons(p.id)}
+                    className="flex items-center gap-1 rounded-lg px-3 py-2 text-xs font-bold text-brand-blue transition hover:bg-brand-blue/10"
+                  >
+                    🎓 جلسات دوره
+                    <ChevronDown
+                      className={`h-3.5 w-3.5 transition ${expandedProductId === p.id ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(p.id)}
+                    className="rounded-lg p-2 text-brand-muted transition hover:bg-red-50 hover:text-red-600"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
                 </div>
               </div>
-              <button
-                onClick={() => handleDelete(p.id)}
-                className="rounded-lg p-2 text-brand-muted transition hover:bg-red-50 hover:text-red-600"
-              >
-                <Trash2 className="h-4 w-4" />
-              </button>
+
+              {expandedProductId === p.id && (
+                <div className="mt-4 space-y-3 border-t border-slate-100 pt-4">
+                  {lessons.length === 0 ? (
+                    <p className="text-xs text-brand-muted">هنوز جلسه‌ای برای این محصول اضافه نشده است.</p>
+                  ) : (
+                    <div className="space-y-2">
+                      {lessons.map((lesson) => (
+                        <div
+                          key={lesson.id}
+                          className="flex items-center justify-between rounded-xl bg-brand-bg-cool p-3 text-xs"
+                        >
+                          <div>
+                            <p className="font-bold text-brand-ink">{lesson.title}</p>
+                            <p className="mt-0.5 text-brand-muted">{LESSON_STATUS_LABELS[lesson.status]}</p>
+                          </div>
+                          <button
+                            onClick={() => handleLessonDelete(p.id, lesson.id)}
+                            className="rounded-lg p-1.5 text-brand-muted transition hover:bg-red-50 hover:text-red-600"
+                          >
+                            <Trash2 className="h-3.5 w-3.5" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <form
+                    onSubmit={(e) => handleLessonUpload(e, p.id)}
+                    className="grid gap-2 rounded-xl border border-dashed border-slate-200 p-3 sm:grid-cols-[1fr_1fr_auto]"
+                  >
+                    <Input
+                      value={lessonTitle}
+                      onChange={(e) => setLessonTitle(e.target.value)}
+                      placeholder={`عنوان جلسه ${lessons.length + 1}`}
+                      required
+                    />
+                    <input
+                      type="file"
+                      name="video"
+                      accept="video/mp4,video/quicktime,video/x-matroska,video/webm"
+                      className="text-xs text-brand-muted"
+                    />
+                    <Button type="submit" disabled={lessonUploading} className="whitespace-nowrap">
+                      {lessonUploading ? "در حال آپلود..." : "افزودن جلسه"}
+                    </Button>
+                  </form>
+                  <ErrorText>{lessonError}</ErrorText>
+                </div>
+              )}
             </Card>
           ))
         )}

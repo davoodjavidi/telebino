@@ -5,6 +5,8 @@ import { ServeStaticModule } from "@nestjs/serve-static";
 import { PrismaModule } from "./prisma/prisma.module.js";
 import { UploadsModule } from "./uploads/uploads.module.js";
 import { UPLOADS_DIR } from "./uploads/uploads.constants.js";
+import { ArvanVideoModule } from "./arvan-video/arvan-video.module.js";
+import { CourseLessonsModule } from "./course-lessons/course-lessons.module.js";
 import { AuthCommonModule } from "./common/auth-common.module.js";
 import { AuthModule } from "./auth/auth.module.js";
 import { ProductsModule } from "./products/products.module.js";
@@ -33,7 +35,9 @@ import { AdminModule } from "./admin/admin.module.js";
     AuthCommonModule,
     AuthModule,
     UploadsModule,
+    ArvanVideoModule,
     ProductsModule,
+    CourseLessonsModule,
     FaqModule,
     LookupModule,
     CustomersModule,

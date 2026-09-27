@@ -42,6 +42,12 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     get product(): Prisma.ProductDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
+    get courseLesson(): Prisma.CourseLessonDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    get courseAccess(): Prisma.CourseAccessDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
     get faqEntry(): Prisma.FaqEntryDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;

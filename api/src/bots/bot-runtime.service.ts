@@ -9,11 +9,15 @@ import { PrismaService } from "../prisma/prisma.service.js";
 import { CustomersService } from "../customers/customers.service.js";
 import { FormsService } from "../forms/forms.service.js";
 import { UploadsService } from "../uploads/uploads.service.js";
+import { ArvanVideoService } from "../arvan-video/arvan-video.service.js";
 import {
+  COURSE_ACCESS_GRANTED_EVENT,
   LOOKUP_STATUS_CHANGED_EVENT,
   LookupService,
+  type CourseAccessGrantedPayload,
   type LookupStatusChangedPayload,
 } from "../lookup/lookup.service.js";
+import { LessonStatus } from "../generated/prisma/enums.js";
 import type { Bot as BotRecord, Product } from "../generated/prisma/client.js";
 
 type SessionState =
@@ -35,6 +39,7 @@ export class BotRuntimeService implements OnModuleInit {
     private readonly forms: FormsService,
     private readonly lookup: LookupService,
     private readonly uploads: UploadsService,
+    private readonly arvanVideo: ArvanVideoService,
   ) {}
 
   /** Reconnect every active bot on server boot (so restarts don't drop bots). */
@@ -118,6 +123,24 @@ export class BotRuntimeService implements OnModuleInit {
     );
   }
 
+  /** Proactive notification once a course order is confirmed as paid — points the student at the "My Courses" menu. */
+  @OnEvent(COURSE_ACCESS_GRANTED_EVENT)
+  async handleCourseAccessGranted(payload: CourseAccessGrantedPayload) {
+    const entry = Array.from(this.instances.values()).find(
+      (i) => i.businessId === payload.businessId,
+    );
+    if (!entry) return;
+
+    const product = await this.prisma.product.findUnique({ where: { id: payload.productId } });
+    if (!product) return;
+
+    await this.safeSend(
+      entry.bot,
+      Number(payload.telegramUserId),
+      `🎉 دسترسی شما به دوره «${product.name}» فعال شد!\nبرای مشاهده جلسات از «🎓 دوره‌های من» در منو استفاده کنید.`,
+    );
+  }
+
   private async handleMessage(botId: string, businessId: string, ctx: Context) {
     const entry = this.instances.get(botId);
     if (!entry) return;
@@ -142,7 +165,7 @@ export class BotRuntimeService implements OnModuleInit {
 
     if (text === "/start") {
       this.sessions.set(sessionKey, { mode: "idle" });
-      await this.sendWelcome(bot, chatId, businessId, business.name);
+      await this.sendWelcome(bot, chatId, businessId, telegramUserId, business.name);
       return;
     }
 
@@ -173,15 +196,28 @@ export class BotRuntimeService implements OnModuleInit {
     }
 
     if (text) {
-      const handledAsMenu = await this.handleMenuSelection(bot, chatId, sessionKey, businessId, text);
+      const handledAsMenu = await this.handleMenuSelection(
+        bot,
+        chatId,
+        sessionKey,
+        businessId,
+        telegramUserId,
+        text,
+      );
       if (handledAsMenu) return;
 
       await this.answerFromFaq(bot, chatId, businessId, text);
     }
   }
 
-  private async sendWelcome(bot: Bot, chatId: number, businessId: string, businessName: string) {
-    const keyboard = await this.buildMainMenu(businessId);
+  private async sendWelcome(
+    bot: Bot,
+    chatId: number,
+    businessId: string,
+    telegramUserId: string,
+    businessName: string,
+  ) {
+    const keyboard = await this.buildMainMenu(businessId, telegramUserId);
     await this.safeSend(
       bot,
       chatId,
@@ -190,12 +226,13 @@ export class BotRuntimeService implements OnModuleInit {
     );
   }
 
-  private async buildMainMenu(businessId: string) {
-    const [productCount, orderCount, accessCount, forms] = await Promise.all([
+  private async buildMainMenu(businessId: string, telegramUserId: string) {
+    const [productCount, orderCount, accessCount, forms, courseAccessCount] = await Promise.all([
       this.prisma.product.count({ where: { businessId } }),
       this.prisma.lookupEntry.count({ where: { businessId, kind: "ORDER" } }),
       this.prisma.lookupEntry.count({ where: { businessId, kind: "ACCESS" } }),
       this.prisma.formDef.findMany({ where: { businessId }, select: { title: true } }),
+      this.prisma.courseAccess.count({ where: { businessId, telegramUserId } }),
     ]);
 
     const builder = new ReplyKeyboardBuilder();
@@ -207,6 +244,7 @@ export class BotRuntimeService implements OnModuleInit {
     };
 
     if (productCount > 0) addRow("📦 محصولات");
+    if (courseAccessCount > 0) addRow("🎓 دوره‌های من");
     if (orderCount > 0) addRow("🔎 پیگیری سفارش");
     if (accessCount > 0) addRow("🔎 بررسی دسترسی");
     for (const form of forms) addRow(`📝 ${form.title}`);
@@ -219,6 +257,7 @@ export class BotRuntimeService implements OnModuleInit {
     chatId: number,
     sessionKey: string,
     businessId: string,
+    telegramUserId: string,
     text: string,
   ): Promise<boolean> {
     if (text === "📦 محصولات") {
@@ -240,6 +279,31 @@ export class BotRuntimeService implements OnModuleInit {
         if (remaining > 0) {
           await this.safeSend(bot, chatId, `و ${remaining} محصول دیگر...`);
         }
+      }
+      return true;
+    }
+
+    if (text === "🎓 دوره‌های من") {
+      const accesses = await this.prisma.courseAccess.findMany({
+        where: { businessId, telegramUserId },
+        include: { product: true },
+        orderBy: { grantedAt: "desc" },
+      });
+
+      if (accesses.length === 0) {
+        await this.safeSend(bot, chatId, "شما هنوز به دوره‌ای دسترسی ندارید.");
+        return true;
+      }
+
+      for (const access of accesses) {
+        const keyboard = new InlineKeyboardBuilder()
+          .text("📚 مشاهده جلسات", `course:${access.productId}`)
+          .build();
+        await bot.api.sendMessage({
+          chat_id: chatId,
+          text: `🎓 ${access.product.name}`,
+          reply_markup: keyboard,
+        });
       }
       return true;
     }
@@ -310,12 +374,33 @@ export class BotRuntimeService implements OnModuleInit {
     const chatId = ctx.chatId;
     if (!entry || !data || chatId === undefined) return;
 
-    const [action, productId] = data.split(":");
-    if (action !== "order" || !productId) {
-      await ctx.answerCallbackQuery().catch(() => undefined);
+    const telegramUserId = String(ctx.from?.id ?? chatId);
+    const [action, id] = data.split(":");
+
+    if (action === "order" && id) {
+      await this.handleOrderCallback(entry.bot, chatId, businessId, telegramUserId, id, ctx);
+      return;
+    }
+    if (action === "course" && id) {
+      await this.handleCourseCallback(entry.bot, chatId, businessId, telegramUserId, id, ctx);
+      return;
+    }
+    if (action === "lesson" && id) {
+      await this.handleLessonCallback(entry.bot, chatId, businessId, telegramUserId, id, ctx);
       return;
     }
 
+    await ctx.answerCallbackQuery().catch(() => undefined);
+  }
+
+  private async handleOrderCallback(
+    bot: Bot,
+    chatId: number,
+    businessId: string,
+    telegramUserId: string,
+    productId: string,
+    ctx: Context,
+  ) {
     const product = await this.prisma.product.findUnique({ where: { id: productId } });
     if (!product || product.businessId !== businessId) {
       await ctx
@@ -324,7 +409,6 @@ export class BotRuntimeService implements OnModuleInit {
       return;
     }
 
-    const telegramUserId = String(ctx.from?.id ?? chatId);
     const customer = await this.prisma.customer.findUnique({
       where: { businessId_telegramUserId: { businessId, telegramUserId } },
     });
@@ -337,6 +421,7 @@ export class BotRuntimeService implements OnModuleInit {
       identifier,
       status: "در حال بررسی",
       customerPhone: customer?.phone ?? undefined,
+      customerTelegramUserId: telegramUserId,
       note: `سفارش محصول «${product.name}»`,
       notifyOnUpdate: true,
       productId: product.id,
@@ -344,10 +429,98 @@ export class BotRuntimeService implements OnModuleInit {
 
     await ctx.answerCallbackQuery({ text: "سفارش شما ثبت شد ✅" }).catch(() => undefined);
     await this.safeSend(
-      entry.bot,
+      bot,
       chatId,
       `✅ سفارش شما برای «${product.name}» ثبت شد.\nشماره پیگیری: ${identifier}\nبرای بررسی وضعیت از «🔎 پیگیری سفارش» استفاده کنید.`,
     );
+  }
+
+  private async handleCourseCallback(
+    bot: Bot,
+    chatId: number,
+    businessId: string,
+    telegramUserId: string,
+    productId: string,
+    ctx: Context,
+  ) {
+    const access = await this.prisma.courseAccess.findUnique({
+      where: { businessId_productId_telegramUserId: { businessId, productId, telegramUserId } },
+    });
+    if (!access) {
+      await ctx
+        .answerCallbackQuery({ text: "شما به این دوره دسترسی ندارید.", show_alert: true })
+        .catch(() => undefined);
+      return;
+    }
+
+    const lessons = await this.prisma.courseLesson.findMany({
+      where: { productId },
+      orderBy: { order: "asc" },
+    });
+    if (lessons.length === 0) {
+      await ctx
+        .answerCallbackQuery({ text: "هنوز جلسه‌ای برای این دوره اضافه نشده است.", show_alert: true })
+        .catch(() => undefined);
+      return;
+    }
+
+    const buttons = new InlineKeyboardBuilder();
+    lessons.forEach((lesson, index) => {
+      if (index > 0) buttons.row();
+      const label = lesson.status === LessonStatus.READY ? `▶️ ${lesson.title}` : `⏳ ${lesson.title}`;
+      buttons.text(label, `lesson:${lesson.id}`);
+    });
+
+    await ctx.answerCallbackQuery().catch(() => undefined);
+    await bot.api.sendMessage({ chat_id: chatId, text: "جلسات این دوره:", reply_markup: buttons.build() });
+  }
+
+  private async handleLessonCallback(
+    bot: Bot,
+    chatId: number,
+    businessId: string,
+    telegramUserId: string,
+    lessonId: string,
+    ctx: Context,
+  ) {
+    const lesson = await this.prisma.courseLesson.findUnique({
+      where: { id: lessonId },
+      include: { product: true },
+    });
+    if (!lesson || lesson.product.businessId !== businessId) {
+      await ctx.answerCallbackQuery({ text: "این جلسه پیدا نشد.", show_alert: true }).catch(() => undefined);
+      return;
+    }
+
+    const access = await this.prisma.courseAccess.findUnique({
+      where: {
+        businessId_productId_telegramUserId: { businessId, productId: lesson.productId, telegramUserId },
+      },
+    });
+    if (!access) {
+      await ctx
+        .answerCallbackQuery({ text: "شما به این دوره دسترسی ندارید.", show_alert: true })
+        .catch(() => undefined);
+      return;
+    }
+
+    if (lesson.status !== LessonStatus.READY || !lesson.arvanVideoId) {
+      await ctx
+        .answerCallbackQuery({ text: "این جلسه هنوز آماده پخش نیست.", show_alert: true })
+        .catch(() => undefined);
+      return;
+    }
+
+    try {
+      const url = await this.arvanVideo.getPlaybackUrl(lesson.arvanVideoId);
+      await ctx.answerCallbackQuery().catch(() => undefined);
+      await this.safeSend(bot, chatId, `▶️ ${lesson.title}\n${url}`);
+    } catch (err) {
+      this.logger.warn(`Failed to fetch playback url for lesson ${lesson.id}: ${err}`);
+      await ctx
+        .answerCallbackQuery({ text: "پخش این جلسه در حال حاضر امکان‌پذیر نیست.", show_alert: true })
+        .catch(() => undefined);
+    }
   }
 
   private async generateOrderIdentifier(businessId: string): Promise<string> {

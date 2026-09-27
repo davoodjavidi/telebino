@@ -5,10 +5,10 @@ export declare class ProductsController {
     constructor(products: ProductsService);
     list(businessId: string): import("../generated/prisma/internal/prismaNamespace.js").PrismaPromise<{
         id: string;
-        businessId: string;
+        name: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
+        businessId: string;
         description: string | null;
         price: number | null;
         imageUrl: string | null;
@@ -16,10 +16,10 @@ export declare class ProductsController {
     }[]>;
     create(businessId: string, dto: UpsertProductDto): Promise<{
         id: string;
-        businessId: string;
+        name: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
+        businessId: string;
         description: string | null;
         price: number | null;
         imageUrl: string | null;
@@ -27,10 +27,10 @@ export declare class ProductsController {
     }>;
     update(businessId: string, id: string, dto: UpsertProductDto): Promise<{
         id: string;
-        businessId: string;
+        name: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
+        businessId: string;
         description: string | null;
         price: number | null;
         imageUrl: string | null;

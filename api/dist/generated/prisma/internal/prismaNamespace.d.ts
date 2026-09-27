@@ -164,6 +164,8 @@ export declare const ModelName: {
     readonly Business: "Business";
     readonly User: "User";
     readonly Product: "Product";
+    readonly CourseLesson: "CourseLesson";
+    readonly CourseAccess: "CourseAccess";
     readonly FaqEntry: "FaqEntry";
     readonly LookupEntry: "LookupEntry";
     readonly Customer: "Customer";
@@ -185,7 +187,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "adminUser" | "business" | "user" | "product" | "faqEntry" | "lookupEntry" | "customer" | "formDef" | "formField" | "formSubmission" | "bot" | "broadcast" | "unansweredQuestion";
+        modelProps: "adminUser" | "business" | "user" | "product" | "courseLesson" | "courseAccess" | "faqEntry" | "lookupEntry" | "customer" | "formDef" | "formField" | "formSubmission" | "bot" | "broadcast" | "unansweredQuestion";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
@@ -482,6 +484,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 count: {
                     args: Prisma.ProductCountArgs<ExtArgs>;
                     result: runtime.Types.Utils.Optional<Prisma.ProductCountAggregateOutputType> | number;
+                };
+            };
+        };
+        CourseLesson: {
+            payload: Prisma.$CourseLessonPayload<ExtArgs>;
+            fields: Prisma.CourseLessonFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.CourseLessonFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseLessonPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.CourseLessonFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseLessonPayload>;
+                };
+                findFirst: {
+                    args: Prisma.CourseLessonFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseLessonPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.CourseLessonFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseLessonPayload>;
+                };
+                findMany: {
+                    args: Prisma.CourseLessonFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseLessonPayload>[];
+                };
+                create: {
+                    args: Prisma.CourseLessonCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseLessonPayload>;
+                };
+                createMany: {
+                    args: Prisma.CourseLessonCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.CourseLessonCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseLessonPayload>[];
+                };
+                delete: {
+                    args: Prisma.CourseLessonDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseLessonPayload>;
+                };
+                update: {
+                    args: Prisma.CourseLessonUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseLessonPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.CourseLessonDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.CourseLessonUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.CourseLessonUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseLessonPayload>[];
+                };
+                upsert: {
+                    args: Prisma.CourseLessonUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseLessonPayload>;
+                };
+                aggregate: {
+                    args: Prisma.CourseLessonAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateCourseLesson>;
+                };
+                groupBy: {
+                    args: Prisma.CourseLessonGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.CourseLessonGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.CourseLessonCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.CourseLessonCountAggregateOutputType> | number;
+                };
+            };
+        };
+        CourseAccess: {
+            payload: Prisma.$CourseAccessPayload<ExtArgs>;
+            fields: Prisma.CourseAccessFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.CourseAccessFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseAccessPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.CourseAccessFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseAccessPayload>;
+                };
+                findFirst: {
+                    args: Prisma.CourseAccessFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseAccessPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.CourseAccessFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseAccessPayload>;
+                };
+                findMany: {
+                    args: Prisma.CourseAccessFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseAccessPayload>[];
+                };
+                create: {
+                    args: Prisma.CourseAccessCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseAccessPayload>;
+                };
+                createMany: {
+                    args: Prisma.CourseAccessCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.CourseAccessCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseAccessPayload>[];
+                };
+                delete: {
+                    args: Prisma.CourseAccessDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseAccessPayload>;
+                };
+                update: {
+                    args: Prisma.CourseAccessUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseAccessPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.CourseAccessDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.CourseAccessUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.CourseAccessUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseAccessPayload>[];
+                };
+                upsert: {
+                    args: Prisma.CourseAccessUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseAccessPayload>;
+                };
+                aggregate: {
+                    args: Prisma.CourseAccessAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateCourseAccess>;
+                };
+                groupBy: {
+                    args: Prisma.CourseAccessGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.CourseAccessGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.CourseAccessCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.CourseAccessCountAggregateOutputType> | number;
                 };
             };
         };
@@ -1221,6 +1371,26 @@ export declare const ProductScalarFieldEnum: {
     readonly updatedAt: "updatedAt";
 };
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum];
+export declare const CourseLessonScalarFieldEnum: {
+    readonly id: "id";
+    readonly productId: "productId";
+    readonly title: "title";
+    readonly order: "order";
+    readonly arvanVideoId: "arvanVideoId";
+    readonly status: "status";
+    readonly durationSeconds: "durationSeconds";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type CourseLessonScalarFieldEnum = (typeof CourseLessonScalarFieldEnum)[keyof typeof CourseLessonScalarFieldEnum];
+export declare const CourseAccessScalarFieldEnum: {
+    readonly id: "id";
+    readonly businessId: "businessId";
+    readonly productId: "productId";
+    readonly telegramUserId: "telegramUserId";
+    readonly grantedAt: "grantedAt";
+};
+export type CourseAccessScalarFieldEnum = (typeof CourseAccessScalarFieldEnum)[keyof typeof CourseAccessScalarFieldEnum];
 export declare const FaqEntryScalarFieldEnum: {
     readonly id: "id";
     readonly businessId: "businessId";
@@ -1238,6 +1408,7 @@ export declare const LookupEntryScalarFieldEnum: {
     readonly identifier: "identifier";
     readonly status: "status";
     readonly customerPhone: "customerPhone";
+    readonly customerTelegramUserId: "customerTelegramUserId";
     readonly note: "note";
     readonly notifyOnUpdate: "notifyOnUpdate";
     readonly productId: "productId";
@@ -1358,6 +1529,8 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>;
 export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>;
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>;
+export type EnumLessonStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LessonStatus'>;
+export type ListEnumLessonStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LessonStatus[]'>;
 export type EnumLookupKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LookupKind'>;
 export type ListEnumLookupKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LookupKind[]'>;
 export type EnumFormFieldTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FormFieldType'>;
@@ -1398,6 +1571,8 @@ export type GlobalOmitConfig = {
     business?: Prisma.BusinessOmit;
     user?: Prisma.UserOmit;
     product?: Prisma.ProductOmit;
+    courseLesson?: Prisma.CourseLessonOmit;
+    courseAccess?: Prisma.CourseAccessOmit;
     faqEntry?: Prisma.FaqEntryOmit;
     lookupEntry?: Prisma.LookupEntryOmit;
     customer?: Prisma.CustomerOmit;

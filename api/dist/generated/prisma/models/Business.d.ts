@@ -122,6 +122,7 @@ export type BusinessWhereInput = {
     bots?: Prisma.BotListRelationFilter;
     broadcasts?: Prisma.BroadcastListRelationFilter;
     unansweredQuestions?: Prisma.UnansweredQuestionListRelationFilter;
+    courseAccess?: Prisma.CourseAccessListRelationFilter;
 };
 export type BusinessOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -140,6 +141,7 @@ export type BusinessOrderByWithRelationInput = {
     bots?: Prisma.BotOrderByRelationAggregateInput;
     broadcasts?: Prisma.BroadcastOrderByRelationAggregateInput;
     unansweredQuestions?: Prisma.UnansweredQuestionOrderByRelationAggregateInput;
+    courseAccess?: Prisma.CourseAccessOrderByRelationAggregateInput;
 };
 export type BusinessWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -161,6 +163,7 @@ export type BusinessWhereUniqueInput = Prisma.AtLeast<{
     bots?: Prisma.BotListRelationFilter;
     broadcasts?: Prisma.BroadcastListRelationFilter;
     unansweredQuestions?: Prisma.UnansweredQuestionListRelationFilter;
+    courseAccess?: Prisma.CourseAccessListRelationFilter;
 }, "id">;
 export type BusinessOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -203,6 +206,7 @@ export type BusinessCreateInput = {
     bots?: Prisma.BotCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessUncheckedCreateInput = {
     id?: string;
@@ -221,6 +225,7 @@ export type BusinessUncheckedCreateInput = {
     bots?: Prisma.BotUncheckedCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastUncheckedCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessUncheckedCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -239,6 +244,7 @@ export type BusinessUpdateInput = {
     bots?: Prisma.BotUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -257,6 +263,7 @@ export type BusinessUncheckedUpdateInput = {
     bots?: Prisma.BotUncheckedUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUncheckedUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUncheckedUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessCreateManyInput = {
     id?: string;
@@ -348,6 +355,18 @@ export type BusinessUpdateOneRequiredWithoutProductsNestedInput = {
     upsert?: Prisma.BusinessUpsertWithoutProductsInput;
     connect?: Prisma.BusinessWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessUpdateToOneWithWhereWithoutProductsInput, Prisma.BusinessUpdateWithoutProductsInput>, Prisma.BusinessUncheckedUpdateWithoutProductsInput>;
+};
+export type BusinessCreateNestedOneWithoutCourseAccessInput = {
+    create?: Prisma.XOR<Prisma.BusinessCreateWithoutCourseAccessInput, Prisma.BusinessUncheckedCreateWithoutCourseAccessInput>;
+    connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutCourseAccessInput;
+    connect?: Prisma.BusinessWhereUniqueInput;
+};
+export type BusinessUpdateOneRequiredWithoutCourseAccessNestedInput = {
+    create?: Prisma.XOR<Prisma.BusinessCreateWithoutCourseAccessInput, Prisma.BusinessUncheckedCreateWithoutCourseAccessInput>;
+    connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutCourseAccessInput;
+    upsert?: Prisma.BusinessUpsertWithoutCourseAccessInput;
+    connect?: Prisma.BusinessWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessUpdateToOneWithWhereWithoutCourseAccessInput, Prisma.BusinessUpdateWithoutCourseAccessInput>, Prisma.BusinessUncheckedUpdateWithoutCourseAccessInput>;
 };
 export type BusinessCreateNestedOneWithoutFaqEntriesInput = {
     create?: Prisma.XOR<Prisma.BusinessCreateWithoutFaqEntriesInput, Prisma.BusinessUncheckedCreateWithoutFaqEntriesInput>;
@@ -449,6 +468,7 @@ export type BusinessCreateWithoutUsersInput = {
     bots?: Prisma.BotCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessUncheckedCreateWithoutUsersInput = {
     id?: string;
@@ -466,6 +486,7 @@ export type BusinessUncheckedCreateWithoutUsersInput = {
     bots?: Prisma.BotUncheckedCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastUncheckedCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessUncheckedCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessCreateOrConnectWithoutUsersInput = {
     where: Prisma.BusinessWhereUniqueInput;
@@ -496,6 +517,7 @@ export type BusinessUpdateWithoutUsersInput = {
     bots?: Prisma.BotUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessUncheckedUpdateWithoutUsersInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -513,6 +535,7 @@ export type BusinessUncheckedUpdateWithoutUsersInput = {
     bots?: Prisma.BotUncheckedUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUncheckedUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUncheckedUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessCreateWithoutProductsInput = {
     id?: string;
@@ -530,6 +553,7 @@ export type BusinessCreateWithoutProductsInput = {
     bots?: Prisma.BotCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessUncheckedCreateWithoutProductsInput = {
     id?: string;
@@ -547,6 +571,7 @@ export type BusinessUncheckedCreateWithoutProductsInput = {
     bots?: Prisma.BotUncheckedCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastUncheckedCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessUncheckedCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessCreateOrConnectWithoutProductsInput = {
     where: Prisma.BusinessWhereUniqueInput;
@@ -577,6 +602,7 @@ export type BusinessUpdateWithoutProductsInput = {
     bots?: Prisma.BotUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessUncheckedUpdateWithoutProductsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -587,6 +613,92 @@ export type BusinessUncheckedUpdateWithoutProductsInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     users?: Prisma.UserUncheckedUpdateManyWithoutBusinessNestedInput;
+    faqEntries?: Prisma.FaqEntryUncheckedUpdateManyWithoutBusinessNestedInput;
+    lookupEntries?: Prisma.LookupEntryUncheckedUpdateManyWithoutBusinessNestedInput;
+    customers?: Prisma.CustomerUncheckedUpdateManyWithoutBusinessNestedInput;
+    forms?: Prisma.FormDefUncheckedUpdateManyWithoutBusinessNestedInput;
+    bots?: Prisma.BotUncheckedUpdateManyWithoutBusinessNestedInput;
+    broadcasts?: Prisma.BroadcastUncheckedUpdateManyWithoutBusinessNestedInput;
+    unansweredQuestions?: Prisma.UnansweredQuestionUncheckedUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUncheckedUpdateManyWithoutBusinessNestedInput;
+};
+export type BusinessCreateWithoutCourseAccessInput = {
+    id?: string;
+    name: string;
+    type: $Enums.BusinessType;
+    planTier?: $Enums.PlanTier;
+    isSubscriptionActive?: boolean;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    users?: Prisma.UserCreateNestedManyWithoutBusinessInput;
+    products?: Prisma.ProductCreateNestedManyWithoutBusinessInput;
+    faqEntries?: Prisma.FaqEntryCreateNestedManyWithoutBusinessInput;
+    lookupEntries?: Prisma.LookupEntryCreateNestedManyWithoutBusinessInput;
+    customers?: Prisma.CustomerCreateNestedManyWithoutBusinessInput;
+    forms?: Prisma.FormDefCreateNestedManyWithoutBusinessInput;
+    bots?: Prisma.BotCreateNestedManyWithoutBusinessInput;
+    broadcasts?: Prisma.BroadcastCreateNestedManyWithoutBusinessInput;
+    unansweredQuestions?: Prisma.UnansweredQuestionCreateNestedManyWithoutBusinessInput;
+};
+export type BusinessUncheckedCreateWithoutCourseAccessInput = {
+    id?: string;
+    name: string;
+    type: $Enums.BusinessType;
+    planTier?: $Enums.PlanTier;
+    isSubscriptionActive?: boolean;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    users?: Prisma.UserUncheckedCreateNestedManyWithoutBusinessInput;
+    products?: Prisma.ProductUncheckedCreateNestedManyWithoutBusinessInput;
+    faqEntries?: Prisma.FaqEntryUncheckedCreateNestedManyWithoutBusinessInput;
+    lookupEntries?: Prisma.LookupEntryUncheckedCreateNestedManyWithoutBusinessInput;
+    customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutBusinessInput;
+    forms?: Prisma.FormDefUncheckedCreateNestedManyWithoutBusinessInput;
+    bots?: Prisma.BotUncheckedCreateNestedManyWithoutBusinessInput;
+    broadcasts?: Prisma.BroadcastUncheckedCreateNestedManyWithoutBusinessInput;
+    unansweredQuestions?: Prisma.UnansweredQuestionUncheckedCreateNestedManyWithoutBusinessInput;
+};
+export type BusinessCreateOrConnectWithoutCourseAccessInput = {
+    where: Prisma.BusinessWhereUniqueInput;
+    create: Prisma.XOR<Prisma.BusinessCreateWithoutCourseAccessInput, Prisma.BusinessUncheckedCreateWithoutCourseAccessInput>;
+};
+export type BusinessUpsertWithoutCourseAccessInput = {
+    update: Prisma.XOR<Prisma.BusinessUpdateWithoutCourseAccessInput, Prisma.BusinessUncheckedUpdateWithoutCourseAccessInput>;
+    create: Prisma.XOR<Prisma.BusinessCreateWithoutCourseAccessInput, Prisma.BusinessUncheckedCreateWithoutCourseAccessInput>;
+    where?: Prisma.BusinessWhereInput;
+};
+export type BusinessUpdateToOneWithWhereWithoutCourseAccessInput = {
+    where?: Prisma.BusinessWhereInput;
+    data: Prisma.XOR<Prisma.BusinessUpdateWithoutCourseAccessInput, Prisma.BusinessUncheckedUpdateWithoutCourseAccessInput>;
+};
+export type BusinessUpdateWithoutCourseAccessInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    type?: Prisma.EnumBusinessTypeFieldUpdateOperationsInput | $Enums.BusinessType;
+    planTier?: Prisma.EnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier;
+    isSubscriptionActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    users?: Prisma.UserUpdateManyWithoutBusinessNestedInput;
+    products?: Prisma.ProductUpdateManyWithoutBusinessNestedInput;
+    faqEntries?: Prisma.FaqEntryUpdateManyWithoutBusinessNestedInput;
+    lookupEntries?: Prisma.LookupEntryUpdateManyWithoutBusinessNestedInput;
+    customers?: Prisma.CustomerUpdateManyWithoutBusinessNestedInput;
+    forms?: Prisma.FormDefUpdateManyWithoutBusinessNestedInput;
+    bots?: Prisma.BotUpdateManyWithoutBusinessNestedInput;
+    broadcasts?: Prisma.BroadcastUpdateManyWithoutBusinessNestedInput;
+    unansweredQuestions?: Prisma.UnansweredQuestionUpdateManyWithoutBusinessNestedInput;
+};
+export type BusinessUncheckedUpdateWithoutCourseAccessInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    type?: Prisma.EnumBusinessTypeFieldUpdateOperationsInput | $Enums.BusinessType;
+    planTier?: Prisma.EnumPlanTierFieldUpdateOperationsInput | $Enums.PlanTier;
+    isSubscriptionActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    users?: Prisma.UserUncheckedUpdateManyWithoutBusinessNestedInput;
+    products?: Prisma.ProductUncheckedUpdateManyWithoutBusinessNestedInput;
     faqEntries?: Prisma.FaqEntryUncheckedUpdateManyWithoutBusinessNestedInput;
     lookupEntries?: Prisma.LookupEntryUncheckedUpdateManyWithoutBusinessNestedInput;
     customers?: Prisma.CustomerUncheckedUpdateManyWithoutBusinessNestedInput;
@@ -611,6 +723,7 @@ export type BusinessCreateWithoutFaqEntriesInput = {
     bots?: Prisma.BotCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessUncheckedCreateWithoutFaqEntriesInput = {
     id?: string;
@@ -628,6 +741,7 @@ export type BusinessUncheckedCreateWithoutFaqEntriesInput = {
     bots?: Prisma.BotUncheckedCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastUncheckedCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessUncheckedCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessCreateOrConnectWithoutFaqEntriesInput = {
     where: Prisma.BusinessWhereUniqueInput;
@@ -658,6 +772,7 @@ export type BusinessUpdateWithoutFaqEntriesInput = {
     bots?: Prisma.BotUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessUncheckedUpdateWithoutFaqEntriesInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -675,6 +790,7 @@ export type BusinessUncheckedUpdateWithoutFaqEntriesInput = {
     bots?: Prisma.BotUncheckedUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUncheckedUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUncheckedUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessCreateWithoutLookupEntriesInput = {
     id?: string;
@@ -692,6 +808,7 @@ export type BusinessCreateWithoutLookupEntriesInput = {
     bots?: Prisma.BotCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessUncheckedCreateWithoutLookupEntriesInput = {
     id?: string;
@@ -709,6 +826,7 @@ export type BusinessUncheckedCreateWithoutLookupEntriesInput = {
     bots?: Prisma.BotUncheckedCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastUncheckedCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessUncheckedCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessCreateOrConnectWithoutLookupEntriesInput = {
     where: Prisma.BusinessWhereUniqueInput;
@@ -739,6 +857,7 @@ export type BusinessUpdateWithoutLookupEntriesInput = {
     bots?: Prisma.BotUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessUncheckedUpdateWithoutLookupEntriesInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -756,6 +875,7 @@ export type BusinessUncheckedUpdateWithoutLookupEntriesInput = {
     bots?: Prisma.BotUncheckedUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUncheckedUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUncheckedUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessCreateWithoutCustomersInput = {
     id?: string;
@@ -773,6 +893,7 @@ export type BusinessCreateWithoutCustomersInput = {
     bots?: Prisma.BotCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessUncheckedCreateWithoutCustomersInput = {
     id?: string;
@@ -790,6 +911,7 @@ export type BusinessUncheckedCreateWithoutCustomersInput = {
     bots?: Prisma.BotUncheckedCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastUncheckedCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessUncheckedCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessCreateOrConnectWithoutCustomersInput = {
     where: Prisma.BusinessWhereUniqueInput;
@@ -820,6 +942,7 @@ export type BusinessUpdateWithoutCustomersInput = {
     bots?: Prisma.BotUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessUncheckedUpdateWithoutCustomersInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -837,6 +960,7 @@ export type BusinessUncheckedUpdateWithoutCustomersInput = {
     bots?: Prisma.BotUncheckedUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUncheckedUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUncheckedUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessCreateWithoutFormsInput = {
     id?: string;
@@ -854,6 +978,7 @@ export type BusinessCreateWithoutFormsInput = {
     bots?: Prisma.BotCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessUncheckedCreateWithoutFormsInput = {
     id?: string;
@@ -871,6 +996,7 @@ export type BusinessUncheckedCreateWithoutFormsInput = {
     bots?: Prisma.BotUncheckedCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastUncheckedCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessUncheckedCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessCreateOrConnectWithoutFormsInput = {
     where: Prisma.BusinessWhereUniqueInput;
@@ -901,6 +1027,7 @@ export type BusinessUpdateWithoutFormsInput = {
     bots?: Prisma.BotUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessUncheckedUpdateWithoutFormsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -918,6 +1045,7 @@ export type BusinessUncheckedUpdateWithoutFormsInput = {
     bots?: Prisma.BotUncheckedUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUncheckedUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUncheckedUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessCreateWithoutBotsInput = {
     id?: string;
@@ -935,6 +1063,7 @@ export type BusinessCreateWithoutBotsInput = {
     forms?: Prisma.FormDefCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessUncheckedCreateWithoutBotsInput = {
     id?: string;
@@ -952,6 +1081,7 @@ export type BusinessUncheckedCreateWithoutBotsInput = {
     forms?: Prisma.FormDefUncheckedCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastUncheckedCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessUncheckedCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessCreateOrConnectWithoutBotsInput = {
     where: Prisma.BusinessWhereUniqueInput;
@@ -982,6 +1112,7 @@ export type BusinessUpdateWithoutBotsInput = {
     forms?: Prisma.FormDefUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessUncheckedUpdateWithoutBotsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -999,6 +1130,7 @@ export type BusinessUncheckedUpdateWithoutBotsInput = {
     forms?: Prisma.FormDefUncheckedUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUncheckedUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUncheckedUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessCreateWithoutBroadcastsInput = {
     id?: string;
@@ -1016,6 +1148,7 @@ export type BusinessCreateWithoutBroadcastsInput = {
     forms?: Prisma.FormDefCreateNestedManyWithoutBusinessInput;
     bots?: Prisma.BotCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessUncheckedCreateWithoutBroadcastsInput = {
     id?: string;
@@ -1033,6 +1166,7 @@ export type BusinessUncheckedCreateWithoutBroadcastsInput = {
     forms?: Prisma.FormDefUncheckedCreateNestedManyWithoutBusinessInput;
     bots?: Prisma.BotUncheckedCreateNestedManyWithoutBusinessInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessUncheckedCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessCreateOrConnectWithoutBroadcastsInput = {
     where: Prisma.BusinessWhereUniqueInput;
@@ -1063,6 +1197,7 @@ export type BusinessUpdateWithoutBroadcastsInput = {
     forms?: Prisma.FormDefUpdateManyWithoutBusinessNestedInput;
     bots?: Prisma.BotUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessUncheckedUpdateWithoutBroadcastsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1080,6 +1215,7 @@ export type BusinessUncheckedUpdateWithoutBroadcastsInput = {
     forms?: Prisma.FormDefUncheckedUpdateManyWithoutBusinessNestedInput;
     bots?: Prisma.BotUncheckedUpdateManyWithoutBusinessNestedInput;
     unansweredQuestions?: Prisma.UnansweredQuestionUncheckedUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUncheckedUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessCreateWithoutUnansweredQuestionsInput = {
     id?: string;
@@ -1097,6 +1233,7 @@ export type BusinessCreateWithoutUnansweredQuestionsInput = {
     forms?: Prisma.FormDefCreateNestedManyWithoutBusinessInput;
     bots?: Prisma.BotCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessUncheckedCreateWithoutUnansweredQuestionsInput = {
     id?: string;
@@ -1114,6 +1251,7 @@ export type BusinessUncheckedCreateWithoutUnansweredQuestionsInput = {
     forms?: Prisma.FormDefUncheckedCreateNestedManyWithoutBusinessInput;
     bots?: Prisma.BotUncheckedCreateNestedManyWithoutBusinessInput;
     broadcasts?: Prisma.BroadcastUncheckedCreateNestedManyWithoutBusinessInput;
+    courseAccess?: Prisma.CourseAccessUncheckedCreateNestedManyWithoutBusinessInput;
 };
 export type BusinessCreateOrConnectWithoutUnansweredQuestionsInput = {
     where: Prisma.BusinessWhereUniqueInput;
@@ -1144,6 +1282,7 @@ export type BusinessUpdateWithoutUnansweredQuestionsInput = {
     forms?: Prisma.FormDefUpdateManyWithoutBusinessNestedInput;
     bots?: Prisma.BotUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessUncheckedUpdateWithoutUnansweredQuestionsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1161,6 +1300,7 @@ export type BusinessUncheckedUpdateWithoutUnansweredQuestionsInput = {
     forms?: Prisma.FormDefUncheckedUpdateManyWithoutBusinessNestedInput;
     bots?: Prisma.BotUncheckedUpdateManyWithoutBusinessNestedInput;
     broadcasts?: Prisma.BroadcastUncheckedUpdateManyWithoutBusinessNestedInput;
+    courseAccess?: Prisma.CourseAccessUncheckedUpdateManyWithoutBusinessNestedInput;
 };
 export type BusinessCountOutputType = {
     users: number;
@@ -1172,6 +1312,7 @@ export type BusinessCountOutputType = {
     bots: number;
     broadcasts: number;
     unansweredQuestions: number;
+    courseAccess: number;
 };
 export type BusinessCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     users?: boolean | BusinessCountOutputTypeCountUsersArgs;
@@ -1183,6 +1324,7 @@ export type BusinessCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
     bots?: boolean | BusinessCountOutputTypeCountBotsArgs;
     broadcasts?: boolean | BusinessCountOutputTypeCountBroadcastsArgs;
     unansweredQuestions?: boolean | BusinessCountOutputTypeCountUnansweredQuestionsArgs;
+    courseAccess?: boolean | BusinessCountOutputTypeCountCourseAccessArgs;
 };
 export type BusinessCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.BusinessCountOutputTypeSelect<ExtArgs> | null;
@@ -1214,6 +1356,9 @@ export type BusinessCountOutputTypeCountBroadcastsArgs<ExtArgs extends runtime.T
 export type BusinessCountOutputTypeCountUnansweredQuestionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     where?: Prisma.UnansweredQuestionWhereInput;
 };
+export type BusinessCountOutputTypeCountCourseAccessArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.CourseAccessWhereInput;
+};
 export type BusinessSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     name?: boolean;
@@ -1231,6 +1376,7 @@ export type BusinessSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
     bots?: boolean | Prisma.Business$botsArgs<ExtArgs>;
     broadcasts?: boolean | Prisma.Business$broadcastsArgs<ExtArgs>;
     unansweredQuestions?: boolean | Prisma.Business$unansweredQuestionsArgs<ExtArgs>;
+    courseAccess?: boolean | Prisma.Business$courseAccessArgs<ExtArgs>;
     _count?: boolean | Prisma.BusinessCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["business"]>;
 export type BusinessSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1271,6 +1417,7 @@ export type BusinessInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
     bots?: boolean | Prisma.Business$botsArgs<ExtArgs>;
     broadcasts?: boolean | Prisma.Business$broadcastsArgs<ExtArgs>;
     unansweredQuestions?: boolean | Prisma.Business$unansweredQuestionsArgs<ExtArgs>;
+    courseAccess?: boolean | Prisma.Business$courseAccessArgs<ExtArgs>;
     _count?: boolean | Prisma.BusinessCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type BusinessIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {};
@@ -1287,6 +1434,7 @@ export type $BusinessPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
         bots: Prisma.$BotPayload<ExtArgs>[];
         broadcasts: Prisma.$BroadcastPayload<ExtArgs>[];
         unansweredQuestions: Prisma.$UnansweredQuestionPayload<ExtArgs>[];
+        courseAccess: Prisma.$CourseAccessPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -1357,6 +1505,7 @@ export interface Prisma__BusinessClient<T, Null = never, ExtArgs extends runtime
     bots<T extends Prisma.Business$botsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$botsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     broadcasts<T extends Prisma.Business$broadcastsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$broadcastsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BroadcastPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     unansweredQuestions<T extends Prisma.Business$unansweredQuestionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$unansweredQuestionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UnansweredQuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    courseAccess<T extends Prisma.Business$courseAccessArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$courseAccessArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CourseAccessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
     catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
     finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
@@ -1566,6 +1715,17 @@ export type Business$unansweredQuestionsArgs<ExtArgs extends runtime.Types.Exten
     take?: number;
     skip?: number;
     distinct?: Prisma.UnansweredQuestionScalarFieldEnum | Prisma.UnansweredQuestionScalarFieldEnum[];
+};
+export type Business$courseAccessArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    select?: Prisma.CourseAccessSelect<ExtArgs> | null;
+    omit?: Prisma.CourseAccessOmit<ExtArgs> | null;
+    include?: Prisma.CourseAccessInclude<ExtArgs> | null;
+    where?: Prisma.CourseAccessWhereInput;
+    orderBy?: Prisma.CourseAccessOrderByWithRelationInput | Prisma.CourseAccessOrderByWithRelationInput[];
+    cursor?: Prisma.CourseAccessWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.CourseAccessScalarFieldEnum | Prisma.CourseAccessScalarFieldEnum[];
 };
 export type BusinessDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.BusinessSelect<ExtArgs> | null;

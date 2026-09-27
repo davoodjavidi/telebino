@@ -8,36 +8,36 @@ export declare class FormsController {
             submissions: number;
         };
         fields: {
-            options: string[];
             id: string;
             type: import("../generated/prisma/enums.js").FormFieldType;
-            label: string;
-            required: boolean;
             order: number;
             formId: string;
+            label: string;
+            required: boolean;
+            options: string[];
         }[];
     } & {
         id: string;
-        businessId: string;
         createdAt: Date;
         updatedAt: Date;
+        businessId: string;
         title: string;
     })[]>;
     get(businessId: string, id: string): Promise<{
         fields: {
-            options: string[];
             id: string;
             type: import("../generated/prisma/enums.js").FormFieldType;
-            label: string;
-            required: boolean;
             order: number;
             formId: string;
+            label: string;
+            required: boolean;
+            options: string[];
         }[];
     } & {
         id: string;
-        businessId: string;
         createdAt: Date;
         updatedAt: Date;
+        businessId: string;
         title: string;
     }>;
     submissions(businessId: string, id: string): Promise<({
@@ -61,38 +61,38 @@ export declare class FormsController {
     })[]>;
     create(businessId: string, dto: UpsertFormDto): import("../generated/prisma/models.js").Prisma__FormDefClient<{
         fields: {
-            options: string[];
             id: string;
             type: import("../generated/prisma/enums.js").FormFieldType;
-            label: string;
-            required: boolean;
             order: number;
             formId: string;
+            label: string;
+            required: boolean;
+            options: string[];
         }[];
     } & {
         id: string;
-        businessId: string;
         createdAt: Date;
         updatedAt: Date;
+        businessId: string;
         title: string;
     }, never, import("@prisma/client/runtime/client").DefaultArgs, {
         omit: import("../generated/prisma/internal/prismaNamespace.js").GlobalOmitConfig | undefined;
     }>;
     update(businessId: string, id: string, dto: UpsertFormDto): Promise<{
         fields: {
-            options: string[];
             id: string;
             type: import("../generated/prisma/enums.js").FormFieldType;
-            label: string;
-            required: boolean;
             order: number;
             formId: string;
+            label: string;
+            required: boolean;
+            options: string[];
         }[];
     } & {
         id: string;
-        businessId: string;
         createdAt: Date;
         updatedAt: Date;
+        businessId: string;
         title: string;
     }>;
     remove(businessId: string, id: string): Promise<{

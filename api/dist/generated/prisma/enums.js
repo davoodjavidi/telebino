@@ -31,4 +31,10 @@ export const BroadcastStatus = {
     DONE: 'DONE',
     FAILED: 'FAILED'
 };
+export const LessonStatus = {
+    PENDING: 'PENDING',
+    PROCESSING: 'PROCESSING',
+    READY: 'READY',
+    FAILED: 'FAILED'
+};
 //# sourceMappingURL=enums.js.map

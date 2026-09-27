@@ -28,6 +28,11 @@ export class LookupController {
     return this.lookup.update(businessId, id, dto);
   }
 
+  @Post(":id/mark-paid")
+  markPaid(@CurrentBusinessId() businessId: string, @Param("id") id: string) {
+    return this.lookup.markOrderPaidAndGrantAccess(businessId, id);
+  }
+
   @Delete(":id")
   remove(@CurrentBusinessId() businessId: string, @Param("id") id: string) {
     return this.lookup.remove(businessId, id);

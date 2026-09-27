@@ -6,9 +6,9 @@ export declare class BroadcastController {
     list(businessId: string): import("../generated/prisma/internal/prismaNamespace.js").PrismaPromise<{
         id: string;
         businessId: string;
+        status: import("../generated/prisma/enums.js").BroadcastStatus;
         createdAt: Date;
         updatedAt: Date;
-        status: import("../generated/prisma/enums.js").BroadcastStatus;
         text: string;
         mediaUrl: string | null;
         sentCount: number;
@@ -17,9 +17,9 @@ export declare class BroadcastController {
     create(businessId: string, dto: CreateBroadcastDto): Promise<{
         id: string;
         businessId: string;
+        status: import("../generated/prisma/enums.js").BroadcastStatus;
         createdAt: Date;
         updatedAt: Date;
-        status: import("../generated/prisma/enums.js").BroadcastStatus;
         text: string;
         mediaUrl: string | null;
         sentCount: number;

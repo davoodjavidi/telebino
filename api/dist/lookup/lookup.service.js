@@ -7,10 +7,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { EventEmitter2 } from "@nestjs/event-emitter";
 import { PrismaService } from "../prisma/prisma.service.js";
 export const LOOKUP_STATUS_CHANGED_EVENT = "lookup.statusChanged";
+export const COURSE_ACCESS_GRANTED_EVENT = "lookup.courseAccessGranted";
 let LookupService = class LookupService {
     prisma;
     events;
@@ -21,7 +22,17 @@ let LookupService = class LookupService {
     list(businessId, kind) {
         return this.prisma.lookupEntry.findMany({
             where: { businessId, ...(kind ? { kind } : {}) },
-            include: { product: { select: { id: true, name: true, price: true, imageUrl: true } } },
+            include: {
+                product: {
+                    select: {
+                        id: true,
+                        name: true,
+                        price: true,
+                        imageUrl: true,
+                        _count: { select: { courseLessons: true } },
+                    },
+                },
+            },
             orderBy: { createdAt: "desc" },
         });
     }
@@ -44,6 +55,52 @@ let LookupService = class LookupService {
                 status: updated.status,
                 customerPhone: updated.customerPhone,
             });
+        }
+        return updated;
+    }
+    async markOrderPaidAndGrantAccess(businessId, id) {
+        const entry = await this.assertOwned(businessId, id);
+        if (entry.kind !== "ORDER") {
+            throw new BadRequestException("فقط سفارش‌ها را می‌توان تأیید پرداخت کرد");
+        }
+        const paidStatus = "پرداخت شده ✅";
+        const updated = await this.prisma.lookupEntry.update({
+            where: { id },
+            data: { status: paidStatus },
+        });
+        if (updated.notifyOnUpdate && updated.customerPhone && entry.status !== paidStatus) {
+            this.events.emit(LOOKUP_STATUS_CHANGED_EVENT, {
+                businessId,
+                kind: updated.kind,
+                identifier: updated.identifier,
+                status: updated.status,
+                customerPhone: updated.customerPhone,
+            });
+        }
+        if (updated.productId && updated.customerTelegramUserId) {
+            const lessonCount = await this.prisma.courseLesson.count({ where: { productId: updated.productId } });
+            if (lessonCount > 0) {
+                await this.prisma.courseAccess.upsert({
+                    where: {
+                        businessId_productId_telegramUserId: {
+                            businessId,
+                            productId: updated.productId,
+                            telegramUserId: updated.customerTelegramUserId,
+                        },
+                    },
+                    create: {
+                        businessId,
+                        productId: updated.productId,
+                        telegramUserId: updated.customerTelegramUserId,
+                    },
+                    update: {},
+                });
+                this.events.emit(COURSE_ACCESS_GRANTED_EVENT, {
+                    businessId,
+                    productId: updated.productId,
+                    telegramUserId: updated.customerTelegramUserId,
+                });
+            }
         }
         return updated;
     }

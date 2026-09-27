@@ -29,6 +29,9 @@ let LookupController = class LookupController {
     update(businessId, id, dto) {
         return this.lookup.update(businessId, id, dto);
     }
+    markPaid(businessId, id) {
+        return this.lookup.markOrderPaidAndGrantAccess(businessId, id);
+    }
     remove(businessId, id) {
         return this.lookup.remove(businessId, id);
     }
@@ -58,6 +61,14 @@ __decorate([
     __metadata("design:paramtypes", [String, String, UpsertLookupDto]),
     __metadata("design:returntype", void 0)
 ], LookupController.prototype, "update", null);
+__decorate([
+    Post(":id/mark-paid"),
+    __param(0, CurrentBusinessId()),
+    __param(1, Param("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], LookupController.prototype, "markPaid", null);
 __decorate([
     Delete(":id"),
     __param(0, CurrentBusinessId()),

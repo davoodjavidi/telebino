@@ -5,18 +5,18 @@ export declare class FaqService {
     constructor(prisma: PrismaService);
     list(businessId: string): import("../generated/prisma/internal/prismaNamespace.js").PrismaPromise<{
         id: string;
-        businessId: string;
         createdAt: Date;
         updatedAt: Date;
+        businessId: string;
         question: string;
         alternatePhrases: string[];
         answer: string;
     }[]>;
     create(businessId: string, dto: UpsertFaqDto): import("../generated/prisma/models.js").Prisma__FaqEntryClient<{
         id: string;
-        businessId: string;
         createdAt: Date;
         updatedAt: Date;
+        businessId: string;
         question: string;
         alternatePhrases: string[];
         answer: string;
@@ -25,9 +25,9 @@ export declare class FaqService {
     }>;
     update(businessId: string, id: string, dto: UpsertFaqDto): Promise<{
         id: string;
-        businessId: string;
         createdAt: Date;
         updatedAt: Date;
+        businessId: string;
         question: string;
         alternatePhrases: string[];
         answer: string;

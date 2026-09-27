@@ -146,6 +146,8 @@ export type ProductWhereInput = {
     updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string;
     business?: Prisma.XOR<Prisma.BusinessScalarRelationFilter, Prisma.BusinessWhereInput>;
     lookupEntries?: Prisma.LookupEntryListRelationFilter;
+    courseLessons?: Prisma.CourseLessonListRelationFilter;
+    courseAccess?: Prisma.CourseAccessListRelationFilter;
 };
 export type ProductOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -159,6 +161,8 @@ export type ProductOrderByWithRelationInput = {
     updatedAt?: Prisma.SortOrder;
     business?: Prisma.BusinessOrderByWithRelationInput;
     lookupEntries?: Prisma.LookupEntryOrderByRelationAggregateInput;
+    courseLessons?: Prisma.CourseLessonOrderByRelationAggregateInput;
+    courseAccess?: Prisma.CourseAccessOrderByRelationAggregateInput;
 };
 export type ProductWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -175,6 +179,8 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
     updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string;
     business?: Prisma.XOR<Prisma.BusinessScalarRelationFilter, Prisma.BusinessWhereInput>;
     lookupEntries?: Prisma.LookupEntryListRelationFilter;
+    courseLessons?: Prisma.CourseLessonListRelationFilter;
+    courseAccess?: Prisma.CourseAccessListRelationFilter;
 }, "id">;
 export type ProductOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -217,6 +223,8 @@ export type ProductCreateInput = {
     updatedAt?: Date | string;
     business: Prisma.BusinessCreateNestedOneWithoutProductsInput;
     lookupEntries?: Prisma.LookupEntryCreateNestedManyWithoutProductInput;
+    courseLessons?: Prisma.CourseLessonCreateNestedManyWithoutProductInput;
+    courseAccess?: Prisma.CourseAccessCreateNestedManyWithoutProductInput;
 };
 export type ProductUncheckedCreateInput = {
     id?: string;
@@ -229,6 +237,8 @@ export type ProductUncheckedCreateInput = {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     lookupEntries?: Prisma.LookupEntryUncheckedCreateNestedManyWithoutProductInput;
+    courseLessons?: Prisma.CourseLessonUncheckedCreateNestedManyWithoutProductInput;
+    courseAccess?: Prisma.CourseAccessUncheckedCreateNestedManyWithoutProductInput;
 };
 export type ProductUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -241,6 +251,8 @@ export type ProductUpdateInput = {
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     business?: Prisma.BusinessUpdateOneRequiredWithoutProductsNestedInput;
     lookupEntries?: Prisma.LookupEntryUpdateManyWithoutProductNestedInput;
+    courseLessons?: Prisma.CourseLessonUpdateManyWithoutProductNestedInput;
+    courseAccess?: Prisma.CourseAccessUpdateManyWithoutProductNestedInput;
 };
 export type ProductUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -253,6 +265,8 @@ export type ProductUncheckedUpdateInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     lookupEntries?: Prisma.LookupEntryUncheckedUpdateManyWithoutProductNestedInput;
+    courseLessons?: Prisma.CourseLessonUncheckedUpdateManyWithoutProductNestedInput;
+    courseAccess?: Prisma.CourseAccessUncheckedUpdateManyWithoutProductNestedInput;
 };
 export type ProductCreateManyInput = {
     id?: string;
@@ -331,6 +345,10 @@ export type ProductMinOrderByAggregateInput = {
 export type ProductSumOrderByAggregateInput = {
     price?: Prisma.SortOrder;
 };
+export type ProductScalarRelationFilter = {
+    is?: Prisma.ProductWhereInput;
+    isNot?: Prisma.ProductWhereInput;
+};
 export type ProductNullableScalarRelationFilter = {
     is?: Prisma.ProductWhereInput | null;
     isNot?: Prisma.ProductWhereInput | null;
@@ -383,6 +401,30 @@ export type NullableIntFieldUpdateOperationsInput = {
     multiply?: number;
     divide?: number;
 };
+export type ProductCreateNestedOneWithoutCourseLessonsInput = {
+    create?: Prisma.XOR<Prisma.ProductCreateWithoutCourseLessonsInput, Prisma.ProductUncheckedCreateWithoutCourseLessonsInput>;
+    connectOrCreate?: Prisma.ProductCreateOrConnectWithoutCourseLessonsInput;
+    connect?: Prisma.ProductWhereUniqueInput;
+};
+export type ProductUpdateOneRequiredWithoutCourseLessonsNestedInput = {
+    create?: Prisma.XOR<Prisma.ProductCreateWithoutCourseLessonsInput, Prisma.ProductUncheckedCreateWithoutCourseLessonsInput>;
+    connectOrCreate?: Prisma.ProductCreateOrConnectWithoutCourseLessonsInput;
+    upsert?: Prisma.ProductUpsertWithoutCourseLessonsInput;
+    connect?: Prisma.ProductWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutCourseLessonsInput, Prisma.ProductUpdateWithoutCourseLessonsInput>, Prisma.ProductUncheckedUpdateWithoutCourseLessonsInput>;
+};
+export type ProductCreateNestedOneWithoutCourseAccessInput = {
+    create?: Prisma.XOR<Prisma.ProductCreateWithoutCourseAccessInput, Prisma.ProductUncheckedCreateWithoutCourseAccessInput>;
+    connectOrCreate?: Prisma.ProductCreateOrConnectWithoutCourseAccessInput;
+    connect?: Prisma.ProductWhereUniqueInput;
+};
+export type ProductUpdateOneRequiredWithoutCourseAccessNestedInput = {
+    create?: Prisma.XOR<Prisma.ProductCreateWithoutCourseAccessInput, Prisma.ProductUncheckedCreateWithoutCourseAccessInput>;
+    connectOrCreate?: Prisma.ProductCreateOrConnectWithoutCourseAccessInput;
+    upsert?: Prisma.ProductUpsertWithoutCourseAccessInput;
+    connect?: Prisma.ProductWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutCourseAccessInput, Prisma.ProductUpdateWithoutCourseAccessInput>, Prisma.ProductUncheckedUpdateWithoutCourseAccessInput>;
+};
 export type ProductCreateNestedOneWithoutLookupEntriesInput = {
     create?: Prisma.XOR<Prisma.ProductCreateWithoutLookupEntriesInput, Prisma.ProductUncheckedCreateWithoutLookupEntriesInput>;
     connectOrCreate?: Prisma.ProductCreateOrConnectWithoutLookupEntriesInput;
@@ -407,6 +449,8 @@ export type ProductCreateWithoutBusinessInput = {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     lookupEntries?: Prisma.LookupEntryCreateNestedManyWithoutProductInput;
+    courseLessons?: Prisma.CourseLessonCreateNestedManyWithoutProductInput;
+    courseAccess?: Prisma.CourseAccessCreateNestedManyWithoutProductInput;
 };
 export type ProductUncheckedCreateWithoutBusinessInput = {
     id?: string;
@@ -418,6 +462,8 @@ export type ProductUncheckedCreateWithoutBusinessInput = {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     lookupEntries?: Prisma.LookupEntryUncheckedCreateNestedManyWithoutProductInput;
+    courseLessons?: Prisma.CourseLessonUncheckedCreateNestedManyWithoutProductInput;
+    courseAccess?: Prisma.CourseAccessUncheckedCreateNestedManyWithoutProductInput;
 };
 export type ProductCreateOrConnectWithoutBusinessInput = {
     where: Prisma.ProductWhereUniqueInput;
@@ -454,6 +500,136 @@ export type ProductScalarWhereInput = {
     createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string;
 };
+export type ProductCreateWithoutCourseLessonsInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    price?: number | null;
+    imageUrl?: string | null;
+    attributes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    business: Prisma.BusinessCreateNestedOneWithoutProductsInput;
+    lookupEntries?: Prisma.LookupEntryCreateNestedManyWithoutProductInput;
+    courseAccess?: Prisma.CourseAccessCreateNestedManyWithoutProductInput;
+};
+export type ProductUncheckedCreateWithoutCourseLessonsInput = {
+    id?: string;
+    businessId: string;
+    name: string;
+    description?: string | null;
+    price?: number | null;
+    imageUrl?: string | null;
+    attributes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    lookupEntries?: Prisma.LookupEntryUncheckedCreateNestedManyWithoutProductInput;
+    courseAccess?: Prisma.CourseAccessUncheckedCreateNestedManyWithoutProductInput;
+};
+export type ProductCreateOrConnectWithoutCourseLessonsInput = {
+    where: Prisma.ProductWhereUniqueInput;
+    create: Prisma.XOR<Prisma.ProductCreateWithoutCourseLessonsInput, Prisma.ProductUncheckedCreateWithoutCourseLessonsInput>;
+};
+export type ProductUpsertWithoutCourseLessonsInput = {
+    update: Prisma.XOR<Prisma.ProductUpdateWithoutCourseLessonsInput, Prisma.ProductUncheckedUpdateWithoutCourseLessonsInput>;
+    create: Prisma.XOR<Prisma.ProductCreateWithoutCourseLessonsInput, Prisma.ProductUncheckedCreateWithoutCourseLessonsInput>;
+    where?: Prisma.ProductWhereInput;
+};
+export type ProductUpdateToOneWithWhereWithoutCourseLessonsInput = {
+    where?: Prisma.ProductWhereInput;
+    data: Prisma.XOR<Prisma.ProductUpdateWithoutCourseLessonsInput, Prisma.ProductUncheckedUpdateWithoutCourseLessonsInput>;
+};
+export type ProductUpdateWithoutCourseLessonsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    price?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    attributes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    business?: Prisma.BusinessUpdateOneRequiredWithoutProductsNestedInput;
+    lookupEntries?: Prisma.LookupEntryUpdateManyWithoutProductNestedInput;
+    courseAccess?: Prisma.CourseAccessUpdateManyWithoutProductNestedInput;
+};
+export type ProductUncheckedUpdateWithoutCourseLessonsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    businessId?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    price?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    attributes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    lookupEntries?: Prisma.LookupEntryUncheckedUpdateManyWithoutProductNestedInput;
+    courseAccess?: Prisma.CourseAccessUncheckedUpdateManyWithoutProductNestedInput;
+};
+export type ProductCreateWithoutCourseAccessInput = {
+    id?: string;
+    name: string;
+    description?: string | null;
+    price?: number | null;
+    imageUrl?: string | null;
+    attributes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    business: Prisma.BusinessCreateNestedOneWithoutProductsInput;
+    lookupEntries?: Prisma.LookupEntryCreateNestedManyWithoutProductInput;
+    courseLessons?: Prisma.CourseLessonCreateNestedManyWithoutProductInput;
+};
+export type ProductUncheckedCreateWithoutCourseAccessInput = {
+    id?: string;
+    businessId: string;
+    name: string;
+    description?: string | null;
+    price?: number | null;
+    imageUrl?: string | null;
+    attributes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    lookupEntries?: Prisma.LookupEntryUncheckedCreateNestedManyWithoutProductInput;
+    courseLessons?: Prisma.CourseLessonUncheckedCreateNestedManyWithoutProductInput;
+};
+export type ProductCreateOrConnectWithoutCourseAccessInput = {
+    where: Prisma.ProductWhereUniqueInput;
+    create: Prisma.XOR<Prisma.ProductCreateWithoutCourseAccessInput, Prisma.ProductUncheckedCreateWithoutCourseAccessInput>;
+};
+export type ProductUpsertWithoutCourseAccessInput = {
+    update: Prisma.XOR<Prisma.ProductUpdateWithoutCourseAccessInput, Prisma.ProductUncheckedUpdateWithoutCourseAccessInput>;
+    create: Prisma.XOR<Prisma.ProductCreateWithoutCourseAccessInput, Prisma.ProductUncheckedCreateWithoutCourseAccessInput>;
+    where?: Prisma.ProductWhereInput;
+};
+export type ProductUpdateToOneWithWhereWithoutCourseAccessInput = {
+    where?: Prisma.ProductWhereInput;
+    data: Prisma.XOR<Prisma.ProductUpdateWithoutCourseAccessInput, Prisma.ProductUncheckedUpdateWithoutCourseAccessInput>;
+};
+export type ProductUpdateWithoutCourseAccessInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    price?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    attributes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    business?: Prisma.BusinessUpdateOneRequiredWithoutProductsNestedInput;
+    lookupEntries?: Prisma.LookupEntryUpdateManyWithoutProductNestedInput;
+    courseLessons?: Prisma.CourseLessonUpdateManyWithoutProductNestedInput;
+};
+export type ProductUncheckedUpdateWithoutCourseAccessInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    businessId?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    price?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    attributes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    lookupEntries?: Prisma.LookupEntryUncheckedUpdateManyWithoutProductNestedInput;
+    courseLessons?: Prisma.CourseLessonUncheckedUpdateManyWithoutProductNestedInput;
+};
 export type ProductCreateWithoutLookupEntriesInput = {
     id?: string;
     name: string;
@@ -464,6 +640,8 @@ export type ProductCreateWithoutLookupEntriesInput = {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     business: Prisma.BusinessCreateNestedOneWithoutProductsInput;
+    courseLessons?: Prisma.CourseLessonCreateNestedManyWithoutProductInput;
+    courseAccess?: Prisma.CourseAccessCreateNestedManyWithoutProductInput;
 };
 export type ProductUncheckedCreateWithoutLookupEntriesInput = {
     id?: string;
@@ -475,6 +653,8 @@ export type ProductUncheckedCreateWithoutLookupEntriesInput = {
     attributes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    courseLessons?: Prisma.CourseLessonUncheckedCreateNestedManyWithoutProductInput;
+    courseAccess?: Prisma.CourseAccessUncheckedCreateNestedManyWithoutProductInput;
 };
 export type ProductCreateOrConnectWithoutLookupEntriesInput = {
     where: Prisma.ProductWhereUniqueInput;
@@ -499,6 +679,8 @@ export type ProductUpdateWithoutLookupEntriesInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     business?: Prisma.BusinessUpdateOneRequiredWithoutProductsNestedInput;
+    courseLessons?: Prisma.CourseLessonUpdateManyWithoutProductNestedInput;
+    courseAccess?: Prisma.CourseAccessUpdateManyWithoutProductNestedInput;
 };
 export type ProductUncheckedUpdateWithoutLookupEntriesInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -510,6 +692,8 @@ export type ProductUncheckedUpdateWithoutLookupEntriesInput = {
     attributes?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    courseLessons?: Prisma.CourseLessonUncheckedUpdateManyWithoutProductNestedInput;
+    courseAccess?: Prisma.CourseAccessUncheckedUpdateManyWithoutProductNestedInput;
 };
 export type ProductCreateManyBusinessInput = {
     id?: string;
@@ -531,6 +715,8 @@ export type ProductUpdateWithoutBusinessInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     lookupEntries?: Prisma.LookupEntryUpdateManyWithoutProductNestedInput;
+    courseLessons?: Prisma.CourseLessonUpdateManyWithoutProductNestedInput;
+    courseAccess?: Prisma.CourseAccessUpdateManyWithoutProductNestedInput;
 };
 export type ProductUncheckedUpdateWithoutBusinessInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -542,6 +728,8 @@ export type ProductUncheckedUpdateWithoutBusinessInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     lookupEntries?: Prisma.LookupEntryUncheckedUpdateManyWithoutProductNestedInput;
+    courseLessons?: Prisma.CourseLessonUncheckedUpdateManyWithoutProductNestedInput;
+    courseAccess?: Prisma.CourseAccessUncheckedUpdateManyWithoutProductNestedInput;
 };
 export type ProductUncheckedUpdateManyWithoutBusinessInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -555,15 +743,25 @@ export type ProductUncheckedUpdateManyWithoutBusinessInput = {
 };
 export type ProductCountOutputType = {
     lookupEntries: number;
+    courseLessons: number;
+    courseAccess: number;
 };
 export type ProductCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     lookupEntries?: boolean | ProductCountOutputTypeCountLookupEntriesArgs;
+    courseLessons?: boolean | ProductCountOutputTypeCountCourseLessonsArgs;
+    courseAccess?: boolean | ProductCountOutputTypeCountCourseAccessArgs;
 };
 export type ProductCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.ProductCountOutputTypeSelect<ExtArgs> | null;
 };
 export type ProductCountOutputTypeCountLookupEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     where?: Prisma.LookupEntryWhereInput;
+};
+export type ProductCountOutputTypeCountCourseLessonsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.CourseLessonWhereInput;
+};
+export type ProductCountOutputTypeCountCourseAccessArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.CourseAccessWhereInput;
 };
 export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
@@ -577,6 +775,8 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     updatedAt?: boolean;
     business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>;
     lookupEntries?: boolean | Prisma.Product$lookupEntriesArgs<ExtArgs>;
+    courseLessons?: boolean | Prisma.Product$courseLessonsArgs<ExtArgs>;
+    courseAccess?: boolean | Prisma.Product$courseAccessArgs<ExtArgs>;
     _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["product"]>;
 export type ProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -618,6 +818,8 @@ export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>;
     lookupEntries?: boolean | Prisma.Product$lookupEntriesArgs<ExtArgs>;
+    courseLessons?: boolean | Prisma.Product$courseLessonsArgs<ExtArgs>;
+    courseAccess?: boolean | Prisma.Product$courseAccessArgs<ExtArgs>;
     _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type ProductIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -631,6 +833,8 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     objects: {
         business: Prisma.$BusinessPayload<ExtArgs>;
         lookupEntries: Prisma.$LookupEntryPayload<ExtArgs>[];
+        courseLessons: Prisma.$CourseLessonPayload<ExtArgs>[];
+        courseAccess: Prisma.$CourseAccessPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -696,6 +900,8 @@ export interface Prisma__ProductClient<T, Null = never, ExtArgs extends runtime.
     readonly [Symbol.toStringTag]: "PrismaPromise";
     business<T extends Prisma.BusinessDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BusinessDefaultArgs<ExtArgs>>): Prisma.Prisma__BusinessClient<runtime.Types.Result.GetResult<Prisma.$BusinessPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     lookupEntries<T extends Prisma.Product$lookupEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$lookupEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LookupEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    courseLessons<T extends Prisma.Product$courseLessonsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$courseLessonsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CourseLessonPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    courseAccess<T extends Prisma.Product$courseAccessArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$courseAccessArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CourseAccessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
     catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
     finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
@@ -821,6 +1027,28 @@ export type Product$lookupEntriesArgs<ExtArgs extends runtime.Types.Extensions.I
     take?: number;
     skip?: number;
     distinct?: Prisma.LookupEntryScalarFieldEnum | Prisma.LookupEntryScalarFieldEnum[];
+};
+export type Product$courseLessonsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    select?: Prisma.CourseLessonSelect<ExtArgs> | null;
+    omit?: Prisma.CourseLessonOmit<ExtArgs> | null;
+    include?: Prisma.CourseLessonInclude<ExtArgs> | null;
+    where?: Prisma.CourseLessonWhereInput;
+    orderBy?: Prisma.CourseLessonOrderByWithRelationInput | Prisma.CourseLessonOrderByWithRelationInput[];
+    cursor?: Prisma.CourseLessonWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.CourseLessonScalarFieldEnum | Prisma.CourseLessonScalarFieldEnum[];
+};
+export type Product$courseAccessArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    select?: Prisma.CourseAccessSelect<ExtArgs> | null;
+    omit?: Prisma.CourseAccessOmit<ExtArgs> | null;
+    include?: Prisma.CourseAccessInclude<ExtArgs> | null;
+    where?: Prisma.CourseAccessWhereInput;
+    orderBy?: Prisma.CourseAccessOrderByWithRelationInput | Prisma.CourseAccessOrderByWithRelationInput[];
+    cursor?: Prisma.CourseAccessWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.CourseAccessScalarFieldEnum | Prisma.CourseAccessScalarFieldEnum[];
 };
 export type ProductDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.ProductSelect<ExtArgs> | null;

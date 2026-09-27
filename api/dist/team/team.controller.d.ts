@@ -5,15 +5,15 @@ export declare class TeamController {
     constructor(team: TeamService);
     list(businessId: string): import("../generated/prisma/internal/prismaNamespace.js").PrismaPromise<{
         id: string;
+        createdAt: Date;
         phone: string;
         role: import("../generated/prisma/enums.js").UserRole;
-        createdAt: Date;
     }[]>;
     add(businessId: string, dto: AddMemberDto): Promise<{
         id: string;
+        createdAt: Date;
         phone: string;
         role: import("../generated/prisma/enums.js").UserRole;
-        createdAt: Date;
     }>;
     remove(businessId: string, id: string): Promise<{
         deleted: boolean;

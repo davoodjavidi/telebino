@@ -3,6 +3,7 @@ export declare class UpsertLookupDto {
     identifier: string;
     status: string;
     customerPhone?: string;
+    customerTelegramUserId?: string;
     note?: string;
     notifyOnUpdate?: boolean;
     productId?: string;

@@ -13,6 +13,8 @@ export const ModelName = {
     Business: 'Business',
     User: 'User',
     Product: 'Product',
+    CourseLesson: 'CourseLesson',
+    CourseAccess: 'CourseAccess',
     FaqEntry: 'FaqEntry',
     LookupEntry: 'LookupEntry',
     Customer: 'Customer',
@@ -64,6 +66,24 @@ export const ProductScalarFieldEnum = {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
 };
+export const CourseLessonScalarFieldEnum = {
+    id: 'id',
+    productId: 'productId',
+    title: 'title',
+    order: 'order',
+    arvanVideoId: 'arvanVideoId',
+    status: 'status',
+    durationSeconds: 'durationSeconds',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+export const CourseAccessScalarFieldEnum = {
+    id: 'id',
+    businessId: 'businessId',
+    productId: 'productId',
+    telegramUserId: 'telegramUserId',
+    grantedAt: 'grantedAt'
+};
 export const FaqEntryScalarFieldEnum = {
     id: 'id',
     businessId: 'businessId',
@@ -80,6 +100,7 @@ export const LookupEntryScalarFieldEnum = {
     identifier: 'identifier',
     status: 'status',
     customerPhone: 'customerPhone',
+    customerTelegramUserId: 'customerTelegramUserId',
     note: 'note',
     notifyOnUpdate: 'notifyOnUpdate',
     productId: 'productId',

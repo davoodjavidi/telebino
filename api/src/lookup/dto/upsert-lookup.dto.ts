@@ -14,6 +14,11 @@ export class UpsertLookupDto {
   @IsString()
   customerPhone?: string;
 
+  /** Bot-internal only — set when the bot itself creates the order, never editable from the panel form. */
+  @IsOptional()
+  @IsString()
+  customerTelegramUserId?: string;
+
   @IsOptional()
   @IsString()
   note?: string;

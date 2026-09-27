@@ -6,10 +6,10 @@ export declare class ProductsService {
     constructor(prisma: PrismaService);
     list(businessId: string): Prisma.PrismaPromise<{
         id: string;
-        businessId: string;
+        name: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
+        businessId: string;
         description: string | null;
         price: number | null;
         imageUrl: string | null;
@@ -17,10 +17,10 @@ export declare class ProductsService {
     }[]>;
     create(businessId: string, dto: UpsertProductDto): Promise<{
         id: string;
-        businessId: string;
+        name: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
+        businessId: string;
         description: string | null;
         price: number | null;
         imageUrl: string | null;
@@ -28,10 +28,10 @@ export declare class ProductsService {
     }>;
     update(businessId: string, id: string, dto: UpsertProductDto): Promise<{
         id: string;
-        businessId: string;
+        name: string;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
+        businessId: string;
         description: string | null;
         price: number | null;
         imageUrl: string | null;

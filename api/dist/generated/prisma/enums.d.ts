@@ -37,3 +37,10 @@ export declare const BroadcastStatus: {
     readonly FAILED: "FAILED";
 };
 export type BroadcastStatus = (typeof BroadcastStatus)[keyof typeof BroadcastStatus];
+export declare const LessonStatus: {
+    readonly PENDING: "PENDING";
+    readonly PROCESSING: "PROCESSING";
+    readonly READY: "READY";
+    readonly FAILED: "FAILED";
+};
+export type LessonStatus = (typeof LessonStatus)[keyof typeof LessonStatus];

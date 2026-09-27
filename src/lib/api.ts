@@ -129,6 +129,40 @@ export const productsApi = {
 };
 
 // ---------------------------------------------------------------------------
+// Course lessons (video content attached to a "course" product)
+// ---------------------------------------------------------------------------
+
+export type LessonStatus = "PENDING" | "PROCESSING" | "READY" | "FAILED";
+
+export type CourseLesson = {
+  id: string;
+  productId: string;
+  title: string;
+  order: number;
+  status: LessonStatus;
+  durationSeconds: number | null;
+  createdAt: string;
+};
+
+export const courseLessonsApi = {
+  list: (productId: string) => api<CourseLesson[]>(`/products/${productId}/lessons`),
+  upload: (productId: string, title: string, order: number, file: File) => {
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("order", String(order));
+    formData.append("file", file);
+    return api<CourseLesson>(`/products/${productId}/lessons`, { method: "POST", body: formData });
+  },
+  update: (productId: string, id: string, data: { title: string; order?: number }) =>
+    api<CourseLesson>(`/products/${productId}/lessons/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    }),
+  remove: (productId: string, id: string) =>
+    api<{ deleted: boolean }>(`/products/${productId}/lessons/${id}`, { method: "DELETE" }),
+};
+
+// ---------------------------------------------------------------------------
 // FAQ
 // ---------------------------------------------------------------------------
 
@@ -165,6 +199,7 @@ export type LookupEntryProduct = {
   name: string;
   price: number | null;
   imageUrl: string | null;
+  _count: { courseLessons: number };
 };
 
 export type LookupEntry = {
@@ -196,6 +231,7 @@ export const lookupApi = {
     api<LookupEntry>("/lookup", { method: "POST", body: JSON.stringify(data) }),
   update: (id: string, data: UpsertLookupInput) =>
     api<LookupEntry>(`/lookup/${id}`, { method: "PUT", body: JSON.stringify(data) }),
+  markPaid: (id: string) => api<LookupEntry>(`/lookup/${id}/mark-paid`, { method: "POST" }),
   remove: (id: string) => api<{ deleted: boolean }>(`/lookup/${id}`, { method: "DELETE" }),
 };
 

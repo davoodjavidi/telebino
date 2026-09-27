@@ -2,6 +2,8 @@ export type * from './models/AdminUser.js';
 export type * from './models/Business.js';
 export type * from './models/User.js';
 export type * from './models/Product.js';
+export type * from './models/CourseLesson.js';
+export type * from './models/CourseAccess.js';
 export type * from './models/FaqEntry.js';
 export type * from './models/LookupEntry.js';
 export type * from './models/Customer.js';

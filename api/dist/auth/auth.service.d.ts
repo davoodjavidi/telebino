@@ -16,20 +16,20 @@ export declare class AuthService {
         user: {
             business: {
                 id: string;
-                createdAt: Date;
-                updatedAt: Date;
                 name: string;
+                createdAt: Date;
                 type: BusinessType;
                 planTier: import("../generated/prisma/enums.js").PlanTier;
                 isSubscriptionActive: boolean;
+                updatedAt: Date;
             };
         } & {
             id: string;
+            createdAt: Date;
+            updatedAt: Date;
             phone: string;
             role: import("../generated/prisma/enums.js").UserRole;
             businessId: string;
-            createdAt: Date;
-            updatedAt: Date;
         };
     }>;
 }

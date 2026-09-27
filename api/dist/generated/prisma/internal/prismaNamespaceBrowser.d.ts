@@ -15,6 +15,8 @@ export declare const ModelName: {
     readonly Business: "Business";
     readonly User: "User";
     readonly Product: "Product";
+    readonly CourseLesson: "CourseLesson";
+    readonly CourseAccess: "CourseAccess";
     readonly FaqEntry: "FaqEntry";
     readonly LookupEntry: "LookupEntry";
     readonly Customer: "Customer";
@@ -72,6 +74,26 @@ export declare const ProductScalarFieldEnum: {
     readonly updatedAt: "updatedAt";
 };
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum];
+export declare const CourseLessonScalarFieldEnum: {
+    readonly id: "id";
+    readonly productId: "productId";
+    readonly title: "title";
+    readonly order: "order";
+    readonly arvanVideoId: "arvanVideoId";
+    readonly status: "status";
+    readonly durationSeconds: "durationSeconds";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type CourseLessonScalarFieldEnum = (typeof CourseLessonScalarFieldEnum)[keyof typeof CourseLessonScalarFieldEnum];
+export declare const CourseAccessScalarFieldEnum: {
+    readonly id: "id";
+    readonly businessId: "businessId";
+    readonly productId: "productId";
+    readonly telegramUserId: "telegramUserId";
+    readonly grantedAt: "grantedAt";
+};
+export type CourseAccessScalarFieldEnum = (typeof CourseAccessScalarFieldEnum)[keyof typeof CourseAccessScalarFieldEnum];
 export declare const FaqEntryScalarFieldEnum: {
     readonly id: "id";
     readonly businessId: "businessId";
@@ -89,6 +111,7 @@ export declare const LookupEntryScalarFieldEnum: {
     readonly identifier: "identifier";
     readonly status: "status";
     readonly customerPhone: "customerPhone";
+    readonly customerTelegramUserId: "customerTelegramUserId";
     readonly note: "note";
     readonly notifyOnUpdate: "notifyOnUpdate";
     readonly productId: "productId";

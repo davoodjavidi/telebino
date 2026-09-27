@@ -6,9 +6,10 @@ import { CustomersModule } from "../customers/customers.module.js";
 import { FormsModule } from "../forms/forms.module.js";
 import { LookupModule } from "../lookup/lookup.module.js";
 import { UploadsModule } from "../uploads/uploads.module.js";
+import { ArvanVideoModule } from "../arvan-video/arvan-video.module.js";
 
 @Module({
-  imports: [CustomersModule, FormsModule, LookupModule, UploadsModule],
+  imports: [CustomersModule, FormsModule, LookupModule, UploadsModule, ArvanVideoModule],
   controllers: [BotsController],
   providers: [BotsService, BotRuntimeService],
   exports: [BotRuntimeService],

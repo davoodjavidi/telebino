@@ -25,12 +25,12 @@ export declare class SubscriptionService {
     }>;
     changePlan(businessId: string, planTier: PlanTier): import("../generated/prisma/models.js").Prisma__BusinessClient<{
         id: string;
-        createdAt: Date;
-        updatedAt: Date;
         name: string;
+        createdAt: Date;
         type: import("../generated/prisma/enums.js").BusinessType;
         planTier: PlanTier;
         isSubscriptionActive: boolean;
+        updatedAt: Date;
     }, never, import("@prisma/client/runtime/client").DefaultArgs, {
         omit: import("../generated/prisma/internal/prismaNamespace.js").GlobalOmitConfig | undefined;
     }>;

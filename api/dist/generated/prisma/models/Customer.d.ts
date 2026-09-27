@@ -384,13 +384,6 @@ export type CustomerUncheckedUpdateManyWithoutBusinessNestedInput = {
     updateMany?: Prisma.CustomerUpdateManyWithWhereWithoutBusinessInput | Prisma.CustomerUpdateManyWithWhereWithoutBusinessInput[];
     deleteMany?: Prisma.CustomerScalarWhereInput | Prisma.CustomerScalarWhereInput[];
 };
-export type IntFieldUpdateOperationsInput = {
-    set?: number;
-    increment?: number;
-    decrement?: number;
-    multiply?: number;
-    divide?: number;
-};
 export type CustomerCreateNestedOneWithoutFormSubmissionsInput = {
     create?: Prisma.XOR<Prisma.CustomerCreateWithoutFormSubmissionsInput, Prisma.CustomerUncheckedCreateWithoutFormSubmissionsInput>;
     connectOrCreate?: Prisma.CustomerCreateOrConnectWithoutFormSubmissionsInput;

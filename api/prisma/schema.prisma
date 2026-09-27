@@ -46,6 +46,13 @@ enum BroadcastStatus {
   FAILED
 }
 
+enum LessonStatus {
+  PENDING
+  PROCESSING
+  READY
+  FAILED
+}
+
 /// Platform operator accounts (Telebino staff) — fully separate from the
 /// business-scoped User model, with its own email/password login and JWT.
 model AdminUser {
@@ -76,6 +83,7 @@ model Business {
   bots                Bot[]
   broadcasts          Broadcast[]
   unansweredQuestions UnansweredQuestion[]
+  courseAccess        CourseAccess[]
 }
 
 model User {
@@ -102,8 +110,45 @@ model Product {
   updatedAt   DateTime @updatedAt
 
   lookupEntries LookupEntry[]
+  courseLessons CourseLesson[]
+  courseAccess  CourseAccess[]
 
   @@index([businessId])
+}
+
+/// One video lesson within a course product. A "course" is just a regular
+/// Product (sold through the same order/lookup flow as any other product) that
+/// happens to have lessons attached — no separate course sales pipeline.
+model CourseLesson {
+  id              String       @id @default(cuid())
+  productId       String
+  product         Product      @relation(fields: [productId], references: [id], onDelete: Cascade)
+  title           String
+  order           Int          @default(0)
+  /// Null until the upload finishes processing on ArvanCloud.
+  arvanVideoId    String?
+  status          LessonStatus @default(PENDING)
+  durationSeconds Int?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@index([productId])
+}
+
+/// Granted once a course order is manually confirmed as paid in the panel
+/// (see LookupEntry). Checked directly by Telegram identity — the student
+/// never needs to type in an access code for a course they bought via the bot.
+model CourseAccess {
+  id             String   @id @default(cuid())
+  businessId     String
+  business       Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  productId      String
+  product        Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  telegramUserId String
+  grantedAt      DateTime @default(now())
+
+  @@unique([businessId, productId, telegramUserId])
+  @@index([businessId, telegramUserId])
 }
 
 model FaqEntry {
@@ -127,6 +172,9 @@ model LookupEntry {
   identifier    String
   status        String
   customerPhone String?
+  /// Set by the bot when it creates the order — lets "mark as paid" grant
+  /// CourseAccess by Telegram identity even if the customer never shared a phone.
+  customerTelegramUserId String?
   note          String?
   notifyOnUpdate Boolean   @default(true)
   productId     String?

@@ -86,6 +86,11 @@ export default function LookupPage() {
     load();
   }
 
+  async function handleMarkPaid(id: string) {
+    await lookupApi.markPaid(id);
+    load();
+  }
+
   const filteredEntries = useMemo(() => {
     const term = search.trim().toLowerCase();
     if (!term) return entries;
@@ -224,11 +229,15 @@ export default function LookupPage() {
                           — {entry.product.price.toLocaleString("fa-IR")} تومان
                         </span>
                       )}
+                      {entry.product._count.courseLessons > 0 && (
+                        <span className="mr-1 text-brand-muted">· دوره آموزشی</span>
+                      )}
                     </p>
                   ) : (
                     entry.note && <p className="mt-0.5 text-xs text-brand-muted">{entry.note}</p>
                   )}
                   <input
+                    key={entry.status}
                     defaultValue={entry.status}
                     onBlur={(e) => e.target.value !== entry.status && handleStatusUpdate(entry, e.target.value)}
                     className="mt-1 w-full max-w-xs rounded-lg border border-transparent px-1 py-0.5 text-xs font-bold text-brand-blue outline-none transition hover:border-slate-200 focus:border-brand-blue"
@@ -240,12 +249,21 @@ export default function LookupPage() {
                   )}
                 </div>
               </div>
-              <button
-                onClick={() => handleDelete(entry.id)}
-                className="rounded-lg p-2 text-brand-muted transition hover:bg-red-50 hover:text-red-600"
-              >
-                <Trash2 className="h-4 w-4" />
-              </button>
+              <div className="flex shrink-0 items-center gap-1.5">
+                {entry.kind === "ORDER" &&
+                  (entry.product?._count.courseLessons ?? 0) > 0 &&
+                  entry.status !== "پرداخت شده ✅" && (
+                    <Button variant="secondary" onClick={() => handleMarkPaid(entry.id)}>
+                      تأیید پرداخت و فعال‌سازی دسترسی
+                    </Button>
+                  )}
+                <button
+                  onClick={() => handleDelete(entry.id)}
+                  className="rounded-lg p-2 text-brand-muted transition hover:bg-red-50 hover:text-red-600"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </button>
+              </div>
             </Card>
           ))
         )}

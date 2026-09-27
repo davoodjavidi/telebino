@@ -13,6 +13,7 @@ export class UpsertLookupDto {
     identifier;
     status;
     customerPhone;
+    customerTelegramUserId;
     note;
     notifyOnUpdate;
     productId;
@@ -34,6 +35,11 @@ __decorate([
     IsString(),
     __metadata("design:type", String)
 ], UpsertLookupDto.prototype, "customerPhone", void 0);
+__decorate([
+    IsOptional(),
+    IsString(),
+    __metadata("design:type", String)
+], UpsertLookupDto.prototype, "customerTelegramUserId", void 0);
 __decorate([
     IsOptional(),
     IsString(),

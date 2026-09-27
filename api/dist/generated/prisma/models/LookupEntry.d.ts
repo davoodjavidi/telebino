@@ -14,6 +14,7 @@ export type LookupEntryMinAggregateOutputType = {
     identifier: string | null;
     status: string | null;
     customerPhone: string | null;
+    customerTelegramUserId: string | null;
     note: string | null;
     notifyOnUpdate: boolean | null;
     productId: string | null;
@@ -27,6 +28,7 @@ export type LookupEntryMaxAggregateOutputType = {
     identifier: string | null;
     status: string | null;
     customerPhone: string | null;
+    customerTelegramUserId: string | null;
     note: string | null;
     notifyOnUpdate: boolean | null;
     productId: string | null;
@@ -40,6 +42,7 @@ export type LookupEntryCountAggregateOutputType = {
     identifier: number;
     status: number;
     customerPhone: number;
+    customerTelegramUserId: number;
     note: number;
     notifyOnUpdate: number;
     productId: number;
@@ -54,6 +57,7 @@ export type LookupEntryMinAggregateInputType = {
     identifier?: true;
     status?: true;
     customerPhone?: true;
+    customerTelegramUserId?: true;
     note?: true;
     notifyOnUpdate?: true;
     productId?: true;
@@ -67,6 +71,7 @@ export type LookupEntryMaxAggregateInputType = {
     identifier?: true;
     status?: true;
     customerPhone?: true;
+    customerTelegramUserId?: true;
     note?: true;
     notifyOnUpdate?: true;
     productId?: true;
@@ -80,6 +85,7 @@ export type LookupEntryCountAggregateInputType = {
     identifier?: true;
     status?: true;
     customerPhone?: true;
+    customerTelegramUserId?: true;
     note?: true;
     notifyOnUpdate?: true;
     productId?: true;
@@ -118,6 +124,7 @@ export type LookupEntryGroupByOutputType = {
     identifier: string;
     status: string;
     customerPhone: string | null;
+    customerTelegramUserId: string | null;
     note: string | null;
     notifyOnUpdate: boolean;
     productId: string | null;
@@ -140,6 +147,7 @@ export type LookupEntryWhereInput = {
     identifier?: Prisma.StringFilter<"LookupEntry"> | string;
     status?: Prisma.StringFilter<"LookupEntry"> | string;
     customerPhone?: Prisma.StringNullableFilter<"LookupEntry"> | string | null;
+    customerTelegramUserId?: Prisma.StringNullableFilter<"LookupEntry"> | string | null;
     note?: Prisma.StringNullableFilter<"LookupEntry"> | string | null;
     notifyOnUpdate?: Prisma.BoolFilter<"LookupEntry"> | boolean;
     productId?: Prisma.StringNullableFilter<"LookupEntry"> | string | null;
@@ -155,6 +163,7 @@ export type LookupEntryOrderByWithRelationInput = {
     identifier?: Prisma.SortOrder;
     status?: Prisma.SortOrder;
     customerPhone?: Prisma.SortOrderInput | Prisma.SortOrder;
+    customerTelegramUserId?: Prisma.SortOrderInput | Prisma.SortOrder;
     note?: Prisma.SortOrderInput | Prisma.SortOrder;
     notifyOnUpdate?: Prisma.SortOrder;
     productId?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -174,6 +183,7 @@ export type LookupEntryWhereUniqueInput = Prisma.AtLeast<{
     identifier?: Prisma.StringFilter<"LookupEntry"> | string;
     status?: Prisma.StringFilter<"LookupEntry"> | string;
     customerPhone?: Prisma.StringNullableFilter<"LookupEntry"> | string | null;
+    customerTelegramUserId?: Prisma.StringNullableFilter<"LookupEntry"> | string | null;
     note?: Prisma.StringNullableFilter<"LookupEntry"> | string | null;
     notifyOnUpdate?: Prisma.BoolFilter<"LookupEntry"> | boolean;
     productId?: Prisma.StringNullableFilter<"LookupEntry"> | string | null;
@@ -189,6 +199,7 @@ export type LookupEntryOrderByWithAggregationInput = {
     identifier?: Prisma.SortOrder;
     status?: Prisma.SortOrder;
     customerPhone?: Prisma.SortOrderInput | Prisma.SortOrder;
+    customerTelegramUserId?: Prisma.SortOrderInput | Prisma.SortOrder;
     note?: Prisma.SortOrderInput | Prisma.SortOrder;
     notifyOnUpdate?: Prisma.SortOrder;
     productId?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -208,6 +219,7 @@ export type LookupEntryScalarWhereWithAggregatesInput = {
     identifier?: Prisma.StringWithAggregatesFilter<"LookupEntry"> | string;
     status?: Prisma.StringWithAggregatesFilter<"LookupEntry"> | string;
     customerPhone?: Prisma.StringNullableWithAggregatesFilter<"LookupEntry"> | string | null;
+    customerTelegramUserId?: Prisma.StringNullableWithAggregatesFilter<"LookupEntry"> | string | null;
     note?: Prisma.StringNullableWithAggregatesFilter<"LookupEntry"> | string | null;
     notifyOnUpdate?: Prisma.BoolWithAggregatesFilter<"LookupEntry"> | boolean;
     productId?: Prisma.StringNullableWithAggregatesFilter<"LookupEntry"> | string | null;
@@ -220,6 +232,7 @@ export type LookupEntryCreateInput = {
     identifier: string;
     status: string;
     customerPhone?: string | null;
+    customerTelegramUserId?: string | null;
     note?: string | null;
     notifyOnUpdate?: boolean;
     createdAt?: Date | string;
@@ -234,6 +247,7 @@ export type LookupEntryUncheckedCreateInput = {
     identifier: string;
     status: string;
     customerPhone?: string | null;
+    customerTelegramUserId?: string | null;
     note?: string | null;
     notifyOnUpdate?: boolean;
     productId?: string | null;
@@ -246,6 +260,7 @@ export type LookupEntryUpdateInput = {
     identifier?: Prisma.StringFieldUpdateOperationsInput | string;
     status?: Prisma.StringFieldUpdateOperationsInput | string;
     customerPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    customerTelegramUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     notifyOnUpdate?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -260,6 +275,7 @@ export type LookupEntryUncheckedUpdateInput = {
     identifier?: Prisma.StringFieldUpdateOperationsInput | string;
     status?: Prisma.StringFieldUpdateOperationsInput | string;
     customerPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    customerTelegramUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     notifyOnUpdate?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     productId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -273,6 +289,7 @@ export type LookupEntryCreateManyInput = {
     identifier: string;
     status: string;
     customerPhone?: string | null;
+    customerTelegramUserId?: string | null;
     note?: string | null;
     notifyOnUpdate?: boolean;
     productId?: string | null;
@@ -285,6 +302,7 @@ export type LookupEntryUpdateManyMutationInput = {
     identifier?: Prisma.StringFieldUpdateOperationsInput | string;
     status?: Prisma.StringFieldUpdateOperationsInput | string;
     customerPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    customerTelegramUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     notifyOnUpdate?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -297,6 +315,7 @@ export type LookupEntryUncheckedUpdateManyInput = {
     identifier?: Prisma.StringFieldUpdateOperationsInput | string;
     status?: Prisma.StringFieldUpdateOperationsInput | string;
     customerPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    customerTelegramUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     notifyOnUpdate?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     productId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -323,6 +342,7 @@ export type LookupEntryCountOrderByAggregateInput = {
     identifier?: Prisma.SortOrder;
     status?: Prisma.SortOrder;
     customerPhone?: Prisma.SortOrder;
+    customerTelegramUserId?: Prisma.SortOrder;
     note?: Prisma.SortOrder;
     notifyOnUpdate?: Prisma.SortOrder;
     productId?: Prisma.SortOrder;
@@ -336,6 +356,7 @@ export type LookupEntryMaxOrderByAggregateInput = {
     identifier?: Prisma.SortOrder;
     status?: Prisma.SortOrder;
     customerPhone?: Prisma.SortOrder;
+    customerTelegramUserId?: Prisma.SortOrder;
     note?: Prisma.SortOrder;
     notifyOnUpdate?: Prisma.SortOrder;
     productId?: Prisma.SortOrder;
@@ -349,6 +370,7 @@ export type LookupEntryMinOrderByAggregateInput = {
     identifier?: Prisma.SortOrder;
     status?: Prisma.SortOrder;
     customerPhone?: Prisma.SortOrder;
+    customerTelegramUserId?: Prisma.SortOrder;
     note?: Prisma.SortOrder;
     notifyOnUpdate?: Prisma.SortOrder;
     productId?: Prisma.SortOrder;
@@ -440,6 +462,7 @@ export type LookupEntryCreateWithoutBusinessInput = {
     identifier: string;
     status: string;
     customerPhone?: string | null;
+    customerTelegramUserId?: string | null;
     note?: string | null;
     notifyOnUpdate?: boolean;
     createdAt?: Date | string;
@@ -452,6 +475,7 @@ export type LookupEntryUncheckedCreateWithoutBusinessInput = {
     identifier: string;
     status: string;
     customerPhone?: string | null;
+    customerTelegramUserId?: string | null;
     note?: string | null;
     notifyOnUpdate?: boolean;
     productId?: string | null;
@@ -489,6 +513,7 @@ export type LookupEntryScalarWhereInput = {
     identifier?: Prisma.StringFilter<"LookupEntry"> | string;
     status?: Prisma.StringFilter<"LookupEntry"> | string;
     customerPhone?: Prisma.StringNullableFilter<"LookupEntry"> | string | null;
+    customerTelegramUserId?: Prisma.StringNullableFilter<"LookupEntry"> | string | null;
     note?: Prisma.StringNullableFilter<"LookupEntry"> | string | null;
     notifyOnUpdate?: Prisma.BoolFilter<"LookupEntry"> | boolean;
     productId?: Prisma.StringNullableFilter<"LookupEntry"> | string | null;
@@ -501,6 +526,7 @@ export type LookupEntryCreateWithoutProductInput = {
     identifier: string;
     status: string;
     customerPhone?: string | null;
+    customerTelegramUserId?: string | null;
     note?: string | null;
     notifyOnUpdate?: boolean;
     createdAt?: Date | string;
@@ -514,6 +540,7 @@ export type LookupEntryUncheckedCreateWithoutProductInput = {
     identifier: string;
     status: string;
     customerPhone?: string | null;
+    customerTelegramUserId?: string | null;
     note?: string | null;
     notifyOnUpdate?: boolean;
     createdAt?: Date | string;
@@ -546,6 +573,7 @@ export type LookupEntryCreateManyBusinessInput = {
     identifier: string;
     status: string;
     customerPhone?: string | null;
+    customerTelegramUserId?: string | null;
     note?: string | null;
     notifyOnUpdate?: boolean;
     productId?: string | null;
@@ -558,6 +586,7 @@ export type LookupEntryUpdateWithoutBusinessInput = {
     identifier?: Prisma.StringFieldUpdateOperationsInput | string;
     status?: Prisma.StringFieldUpdateOperationsInput | string;
     customerPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    customerTelegramUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     notifyOnUpdate?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -570,6 +599,7 @@ export type LookupEntryUncheckedUpdateWithoutBusinessInput = {
     identifier?: Prisma.StringFieldUpdateOperationsInput | string;
     status?: Prisma.StringFieldUpdateOperationsInput | string;
     customerPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    customerTelegramUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     notifyOnUpdate?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     productId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -582,6 +612,7 @@ export type LookupEntryUncheckedUpdateManyWithoutBusinessInput = {
     identifier?: Prisma.StringFieldUpdateOperationsInput | string;
     status?: Prisma.StringFieldUpdateOperationsInput | string;
     customerPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    customerTelegramUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     notifyOnUpdate?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     productId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -595,6 +626,7 @@ export type LookupEntryCreateManyProductInput = {
     identifier: string;
     status: string;
     customerPhone?: string | null;
+    customerTelegramUserId?: string | null;
     note?: string | null;
     notifyOnUpdate?: boolean;
     createdAt?: Date | string;
@@ -606,6 +638,7 @@ export type LookupEntryUpdateWithoutProductInput = {
     identifier?: Prisma.StringFieldUpdateOperationsInput | string;
     status?: Prisma.StringFieldUpdateOperationsInput | string;
     customerPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    customerTelegramUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     notifyOnUpdate?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -619,6 +652,7 @@ export type LookupEntryUncheckedUpdateWithoutProductInput = {
     identifier?: Prisma.StringFieldUpdateOperationsInput | string;
     status?: Prisma.StringFieldUpdateOperationsInput | string;
     customerPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    customerTelegramUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     notifyOnUpdate?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -631,6 +665,7 @@ export type LookupEntryUncheckedUpdateManyWithoutProductInput = {
     identifier?: Prisma.StringFieldUpdateOperationsInput | string;
     status?: Prisma.StringFieldUpdateOperationsInput | string;
     customerPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    customerTelegramUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     notifyOnUpdate?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -643,6 +678,7 @@ export type LookupEntrySelect<ExtArgs extends runtime.Types.Extensions.InternalA
     identifier?: boolean;
     status?: boolean;
     customerPhone?: boolean;
+    customerTelegramUserId?: boolean;
     note?: boolean;
     notifyOnUpdate?: boolean;
     productId?: boolean;
@@ -658,6 +694,7 @@ export type LookupEntrySelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
     identifier?: boolean;
     status?: boolean;
     customerPhone?: boolean;
+    customerTelegramUserId?: boolean;
     note?: boolean;
     notifyOnUpdate?: boolean;
     productId?: boolean;
@@ -673,6 +710,7 @@ export type LookupEntrySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
     identifier?: boolean;
     status?: boolean;
     customerPhone?: boolean;
+    customerTelegramUserId?: boolean;
     note?: boolean;
     notifyOnUpdate?: boolean;
     productId?: boolean;
@@ -688,13 +726,14 @@ export type LookupEntrySelectScalar = {
     identifier?: boolean;
     status?: boolean;
     customerPhone?: boolean;
+    customerTelegramUserId?: boolean;
     note?: boolean;
     notifyOnUpdate?: boolean;
     productId?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
 };
-export type LookupEntryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "businessId" | "kind" | "identifier" | "status" | "customerPhone" | "note" | "notifyOnUpdate" | "productId" | "createdAt" | "updatedAt", ExtArgs["result"]["lookupEntry"]>;
+export type LookupEntryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "businessId" | "kind" | "identifier" | "status" | "customerPhone" | "customerTelegramUserId" | "note" | "notifyOnUpdate" | "productId" | "createdAt" | "updatedAt", ExtArgs["result"]["lookupEntry"]>;
 export type LookupEntryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>;
     product?: boolean | Prisma.LookupEntry$productArgs<ExtArgs>;
@@ -720,6 +759,7 @@ export type $LookupEntryPayload<ExtArgs extends runtime.Types.Extensions.Interna
         identifier: string;
         status: string;
         customerPhone: string | null;
+        customerTelegramUserId: string | null;
         note: string | null;
         notifyOnUpdate: boolean;
         productId: string | null;
@@ -790,6 +830,7 @@ export interface LookupEntryFieldRefs {
     readonly identifier: Prisma.FieldRef<"LookupEntry", 'String'>;
     readonly status: Prisma.FieldRef<"LookupEntry", 'String'>;
     readonly customerPhone: Prisma.FieldRef<"LookupEntry", 'String'>;
+    readonly customerTelegramUserId: Prisma.FieldRef<"LookupEntry", 'String'>;
     readonly note: Prisma.FieldRef<"LookupEntry", 'String'>;
     readonly notifyOnUpdate: Prisma.FieldRef<"LookupEntry", 'Boolean'>;
     readonly productId: Prisma.FieldRef<"LookupEntry", 'String'>;

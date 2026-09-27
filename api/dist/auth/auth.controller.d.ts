@@ -15,38 +15,38 @@ export declare class AuthController {
         user: {
             business: {
                 id: string;
-                createdAt: Date;
-                updatedAt: Date;
                 name: string;
+                createdAt: Date;
                 type: import("../generated/prisma/enums.js").BusinessType;
                 planTier: import("../generated/prisma/enums.js").PlanTier;
                 isSubscriptionActive: boolean;
+                updatedAt: Date;
             };
         } & {
             id: string;
+            createdAt: Date;
+            updatedAt: Date;
             phone: string;
             role: import("../generated/prisma/enums.js").UserRole;
             businessId: string;
-            createdAt: Date;
-            updatedAt: Date;
         };
     }>;
     me(user: AuthPayload): Promise<({
         business: {
             id: string;
-            createdAt: Date;
-            updatedAt: Date;
             name: string;
+            createdAt: Date;
             type: import("../generated/prisma/enums.js").BusinessType;
             planTier: import("../generated/prisma/enums.js").PlanTier;
             isSubscriptionActive: boolean;
+            updatedAt: Date;
         };
     } & {
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         phone: string;
         role: import("../generated/prisma/enums.js").UserRole;
         businessId: string;
-        createdAt: Date;
-        updatedAt: Date;
     }) | null>;
 }

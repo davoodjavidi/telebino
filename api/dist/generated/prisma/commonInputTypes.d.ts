@@ -208,21 +208,6 @@ export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
     _min?: Prisma.NestedJsonNullableFilter<$PrismaModel>;
     _max?: Prisma.NestedJsonNullableFilter<$PrismaModel>;
 };
-export type EnumLookupKindFilter<$PrismaModel = never> = {
-    equals?: $Enums.LookupKind | Prisma.EnumLookupKindFieldRefInput<$PrismaModel>;
-    in?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
-    notIn?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
-    not?: Prisma.NestedEnumLookupKindFilter<$PrismaModel> | $Enums.LookupKind;
-};
-export type EnumLookupKindWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.LookupKind | Prisma.EnumLookupKindFieldRefInput<$PrismaModel>;
-    in?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
-    notIn?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
-    not?: Prisma.NestedEnumLookupKindWithAggregatesFilter<$PrismaModel> | $Enums.LookupKind;
-    _count?: Prisma.NestedIntFilter<$PrismaModel>;
-    _min?: Prisma.NestedEnumLookupKindFilter<$PrismaModel>;
-    _max?: Prisma.NestedEnumLookupKindFilter<$PrismaModel>;
-};
 export type IntFilter<$PrismaModel = never> = {
     equals?: number | Prisma.IntFieldRefInput<$PrismaModel>;
     in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>;
@@ -232,6 +217,12 @@ export type IntFilter<$PrismaModel = never> = {
     gt?: number | Prisma.IntFieldRefInput<$PrismaModel>;
     gte?: number | Prisma.IntFieldRefInput<$PrismaModel>;
     not?: Prisma.NestedIntFilter<$PrismaModel> | number;
+};
+export type EnumLessonStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.LessonStatus | Prisma.EnumLessonStatusFieldRefInput<$PrismaModel>;
+    in?: $Enums.LessonStatus[] | Prisma.ListEnumLessonStatusFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.LessonStatus[] | Prisma.ListEnumLessonStatusFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumLessonStatusFilter<$PrismaModel> | $Enums.LessonStatus;
 };
 export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | Prisma.IntFieldRefInput<$PrismaModel>;
@@ -247,6 +238,30 @@ export type IntWithAggregatesFilter<$PrismaModel = never> = {
     _sum?: Prisma.NestedIntFilter<$PrismaModel>;
     _min?: Prisma.NestedIntFilter<$PrismaModel>;
     _max?: Prisma.NestedIntFilter<$PrismaModel>;
+};
+export type EnumLessonStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LessonStatus | Prisma.EnumLessonStatusFieldRefInput<$PrismaModel>;
+    in?: $Enums.LessonStatus[] | Prisma.ListEnumLessonStatusFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.LessonStatus[] | Prisma.ListEnumLessonStatusFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumLessonStatusWithAggregatesFilter<$PrismaModel> | $Enums.LessonStatus;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumLessonStatusFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumLessonStatusFilter<$PrismaModel>;
+};
+export type EnumLookupKindFilter<$PrismaModel = never> = {
+    equals?: $Enums.LookupKind | Prisma.EnumLookupKindFieldRefInput<$PrismaModel>;
+    in?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumLookupKindFilter<$PrismaModel> | $Enums.LookupKind;
+};
+export type EnumLookupKindWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LookupKind | Prisma.EnumLookupKindFieldRefInput<$PrismaModel>;
+    in?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumLookupKindWithAggregatesFilter<$PrismaModel> | $Enums.LookupKind;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumLookupKindFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumLookupKindFilter<$PrismaModel>;
 };
 export type EnumFormFieldTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.FormFieldType | Prisma.EnumFormFieldTypeFieldRefInput<$PrismaModel>;
@@ -514,20 +529,11 @@ export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
     gte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>;
     not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter;
 };
-export type NestedEnumLookupKindFilter<$PrismaModel = never> = {
-    equals?: $Enums.LookupKind | Prisma.EnumLookupKindFieldRefInput<$PrismaModel>;
-    in?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
-    notIn?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
-    not?: Prisma.NestedEnumLookupKindFilter<$PrismaModel> | $Enums.LookupKind;
-};
-export type NestedEnumLookupKindWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.LookupKind | Prisma.EnumLookupKindFieldRefInput<$PrismaModel>;
-    in?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
-    notIn?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
-    not?: Prisma.NestedEnumLookupKindWithAggregatesFilter<$PrismaModel> | $Enums.LookupKind;
-    _count?: Prisma.NestedIntFilter<$PrismaModel>;
-    _min?: Prisma.NestedEnumLookupKindFilter<$PrismaModel>;
-    _max?: Prisma.NestedEnumLookupKindFilter<$PrismaModel>;
+export type NestedEnumLessonStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.LessonStatus | Prisma.EnumLessonStatusFieldRefInput<$PrismaModel>;
+    in?: $Enums.LessonStatus[] | Prisma.ListEnumLessonStatusFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.LessonStatus[] | Prisma.ListEnumLessonStatusFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumLessonStatusFilter<$PrismaModel> | $Enums.LessonStatus;
 };
 export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | Prisma.IntFieldRefInput<$PrismaModel>;
@@ -553,6 +559,30 @@ export type NestedFloatFilter<$PrismaModel = never> = {
     gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
     gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
     not?: Prisma.NestedFloatFilter<$PrismaModel> | number;
+};
+export type NestedEnumLessonStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LessonStatus | Prisma.EnumLessonStatusFieldRefInput<$PrismaModel>;
+    in?: $Enums.LessonStatus[] | Prisma.ListEnumLessonStatusFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.LessonStatus[] | Prisma.ListEnumLessonStatusFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumLessonStatusWithAggregatesFilter<$PrismaModel> | $Enums.LessonStatus;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumLessonStatusFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumLessonStatusFilter<$PrismaModel>;
+};
+export type NestedEnumLookupKindFilter<$PrismaModel = never> = {
+    equals?: $Enums.LookupKind | Prisma.EnumLookupKindFieldRefInput<$PrismaModel>;
+    in?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumLookupKindFilter<$PrismaModel> | $Enums.LookupKind;
+};
+export type NestedEnumLookupKindWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LookupKind | Prisma.EnumLookupKindFieldRefInput<$PrismaModel>;
+    in?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.LookupKind[] | Prisma.ListEnumLookupKindFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumLookupKindWithAggregatesFilter<$PrismaModel> | $Enums.LookupKind;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumLookupKindFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumLookupKindFilter<$PrismaModel>;
 };
 export type NestedEnumFormFieldTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.FormFieldType | Prisma.EnumFormFieldTypeFieldRefInput<$PrismaModel>;
