@@ -1,102 +1,43 @@
 import Link from "next/link";
 import {
+  ArrowLeft,
   BarChart3,
+  Bot,
   Check,
   ClipboardList,
+  Clock,
   GraduationCap,
-  LayoutDashboard,
   Megaphone,
   MessageCircleQuestion,
-  Package,
+  MoonStar,
+  PackageSearch,
+  Repeat,
   ShieldCheck,
   ShoppingBag,
   Sparkles,
-  Truck,
   Users,
   Users2,
+  X,
   Zap,
 } from "lucide-react";
-
-const steps = [
-  {
-    title: "ثبت‌نام سریع",
-    desc: "با شماره موبایل‌تان در چند ثانیه وارد پنل شوید؛ بدون فرم‌های طولانی.",
-  },
-  {
-    title: "ساخت ربات",
-    desc: "با راهنمای گام‌به‌گام، ربات تلگرامی اختصاصی‌تان را در چند دقیقه بسازید.",
-  },
-  {
-    title: "تکمیل اطلاعات",
-    desc: "محصولات، سوالات متداول، ساعت کاری و منوی ربات را وارد کنید.",
-  },
-  {
-    title: "فعال‌سازی و رشد",
-    desc: "ربات‌تان آماده‌ست و به‌صورت خودکار به مشتری‌ها پاسخ می‌دهد.",
-  },
-];
-
-const audiences = [
-  {
-    icon: ShoppingBag,
-    title: "فروشگاه‌های آنلاین",
-    desc: "کاتالوگ محصولات، پیگیری خودکار سفارش و پاسخ به سوالات پرتکرار مشتری‌ها را کاملاً خودکار کنید.",
-  },
-  {
-    icon: GraduationCap,
-    title: "مجموعه‌های آموزشی",
-    desc: "دسترسی به محتوای دوره‌ها را بر اساس شماره دانش‌آموزی، بدون دخالت دستی، مدیریت کنید.",
-  },
-  {
-    icon: Users2,
-    title: "مراکز مشاوره",
-    desc: "با فرم‌های رزرو نوبت و پاسخ‌گویی خودکار به سوالات رایج، وقت بیشتری برای مشتری‌هایتان بگذارید.",
-  },
-];
-
-const features = [
-  { icon: Package, title: "کاتالوگ محصولات", desc: "افزودن و مدیریت محصولات یا خدمات به‌سادگی یک فرم." },
-  { icon: MessageCircleQuestion, title: "سوالات متداول هوشمند", desc: "پاسخ خودکار به پرتکرارترین سوالات مشتری‌ها." },
-  { icon: Truck, title: "پیگیری سفارش", desc: "مشتری با وارد کردن شماره سفارش، وضعیتش را همان لحظه ببیند." },
-  { icon: ClipboardList, title: "فرم‌ساز", desc: "فرم ثبت‌نام و درخواست بسازید؛ مناسب دوره‌ها و رزرو نوبت." },
-  { icon: BarChart3, title: "گزارش‌ها و آمار", desc: "ورود کاربران، سفارش‌ها و سوالات بی‌پاسخ را در یک داشبورد ببینید." },
-  { icon: Megaphone, title: "پیام همگانی", desc: "اطلاعیه یا تخفیف را با یک کلیک به همه‌ی مشتری‌ها بفرستید." },
-  { icon: Users, title: "مدیریت تیم", desc: "با نقش مالک و کارمند، کار پنل را بین تیم‌تان تقسیم کنید." },
-  { icon: LayoutDashboard, title: "پنل کاربری ساده", desc: "بدون نیاز به دانش فنی؛ همه‌چیز با چند کلیک." },
-];
-
-const plans = [
-  {
-    name: "پایه",
-    tagline: "برای شروع کار",
-    features: ["۱ ربات تلگرامی", "کاتالوگ محصولات و سوالات متداول", "پیگیری سفارش", "۵ پیام اول هر ربات رایگان"],
-    highlighted: false,
-  },
-  {
-    name: "کسب‌وکار",
-    tagline: "محبوب‌ترین انتخاب",
-    features: ["چند ربات تلگرامی", "فرم‌ساز و گزارش‌های کامل", "افزودن اعضای تیم", "پیام همگانی"],
-    highlighted: true,
-  },
-  {
-    name: "حرفه‌ای",
-    tagline: "برای مجموعه‌های بزرگ",
-    features: ["حجم پیام بالا", "تعداد نامحدود ربات", "پشتیبانی اولویت‌دار", "حذف برند تلبینو از ربات"],
-    highlighted: false,
-  },
-];
+import { BotDemo } from "@/components/landing/bot-demo";
+import { Pricing } from "@/components/landing/pricing";
+import { Reveal } from "@/components/landing/reveal";
+import { Logo, SiteHeader } from "@/components/landing/site-header";
 
 export default function Home() {
   return (
     <>
       <SiteHeader />
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-clip">
         <Hero />
-        <TrustStrip />
-        <HowItWorks />
-        <Audiences />
+        <UseCaseMarquee />
+        <BeforeAfter />
         <Features />
-        <Pricing />
+        <Audiences />
+        <HowItWorks />
+        <PricingSection />
+        <Faq />
         <FinalCta />
       </main>
       <SiteFooter />
@@ -104,262 +45,450 @@ export default function Home() {
   );
 }
 
-function SiteHeader() {
-  return (
-    <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/80 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-blue text-white font-extrabold">
-            ت
-          </span>
-          <span className="text-lg font-extrabold text-brand-ink">تلبینو</span>
-        </Link>
-        <nav className="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
-          <a href="#features" className="transition hover:text-brand-blue">امکانات</a>
-          <a href="#audiences" className="transition hover:text-brand-blue">مناسب چه کسانی؟</a>
-          <a href="#pricing" className="transition hover:text-brand-blue">قیمت‌گذاری</a>
-        </nav>
-        <div className="flex items-center gap-3">
-          <Link
-            href="/login"
-            className="hidden text-sm font-medium text-slate-600 transition hover:text-brand-blue sm:inline"
-          >
-            ورود
-          </Link>
-          <Link
-            href="/login"
-            className="rounded-full bg-brand-accent px-5 py-2.5 text-sm font-bold text-white shadow-sm shadow-orange-200 transition hover:bg-brand-accent-dark"
-          >
-            شروع رایگان
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
-}
+// ---------------------------------------------------------------------------
+// Hero
+// ---------------------------------------------------------------------------
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-brand-bg-cool">
-      <div className="pointer-events-none absolute inset-x-0 -top-24 -z-10 flex justify-center">
-        <div className="h-72 w-72 rounded-full bg-brand-blue/20 blur-3xl sm:h-96 sm:w-96" />
-      </div>
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-2 md:py-24">
-        <div className="animate-fade-in-up">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-teal/10 px-3.5 py-1.5 text-xs font-bold text-brand-teal">
-            <Sparkles className="h-3.5 w-3.5" />
-            بدون نیاز به دانش فنی یا برنامه‌نویسی
-          </span>
-          <h1 className="mt-5 text-3xl font-extrabold leading-[1.4] text-brand-ink sm:text-4xl md:text-[2.75rem]">
-            ربات تلگرامی کسب‌وکارتان را
-            <span className="text-brand-blue"> بدون کدنویسی </span>
-            بسازید
+    <section className="relative isolate overflow-hidden bg-slate-950 pb-24 pt-32 text-white md:pb-32 md:pt-40">
+      <div className="bg-grid absolute inset-0 -z-10" />
+      <div className="animate-blob absolute -right-32 top-10 -z-10 h-[28rem] w-[28rem] rounded-full bg-brand-blue/40 blur-[120px]" />
+      <div
+        className="animate-blob absolute -left-20 top-60 -z-10 h-[24rem] w-[24rem] rounded-full bg-brand-teal/30 blur-[120px]"
+        style={{ animationDelay: "-5s" }}
+      />
+      <div
+        className="animate-blob absolute bottom-0 left-1/3 -z-10 h-72 w-72 rounded-full bg-brand-accent/25 blur-[110px]"
+        style={{ animationDelay: "-9s" }}
+      />
+
+      <div className="mx-auto grid max-w-6xl items-center gap-16 px-5 lg:grid-cols-[1.15fr_1fr]">
+        <div className="animate-fade-in-up text-center lg:text-right">
+          <a
+            href="#pricing"
+            className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 py-1.5 pl-3 pr-1.5 text-xs font-bold text-white/80 backdrop-blur transition hover:border-white/30"
+          >
+            <span className="rounded-full bg-brand-accent px-2 py-0.5 text-white">جدید</span>
+            فروش دوره‌ی ویدیویی مستقیم داخل تلگرام
+            <ArrowLeft className="h-3.5 w-3.5 transition group-hover:-translate-x-0.5" />
+          </a>
+
+          <h1 className="mt-7 text-4xl font-black leading-[1.35] tracking-tight sm:text-5xl lg:text-[3.6rem]">
+            ربات تلگرامی که
+            <br />
+            <span className="text-gradient">شبانه‌روز جای شما</span>
+            <br />
+            جواب می‌دهد و می‌فروشد
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-8 text-brand-muted sm:text-lg">
-            تلبینو به فروشگاه‌های آنلاین، مجموعه‌های آموزشی و مراکز مشاوره کمک می‌کند در چند دقیقه یک ربات تلگرامی حرفه‌ای داشته باشند — پاسخ‌گوی خودکار، پیگیری سفارش و همه‌چیز در یک پنل ساده.
+
+          <p className="mx-auto mt-7 max-w-xl text-base leading-8 text-white/65 sm:text-lg lg:mx-0">
+            بدون یک خط کد، در کمتر از ۵ دقیقه ربات اختصاصی فروشگاه، آموزشگاه یا مرکز مشاوره‌تان را بسازید.
+            کاتالوگ محصول، پیگیری سفارش، فروش دوره و فرم رزرو — همه در یک پنل فارسی.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+
+          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
             <Link
               href="/login"
-              className="rounded-full bg-brand-accent px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-orange-200 transition hover:-translate-y-0.5 hover:bg-brand-accent-dark"
+              className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-brand-accent px-8 py-4 text-base font-bold text-white shadow-[0_10px_40px_-8px_rgba(255,106,57,0.7)] transition hover:-translate-y-0.5 hover:bg-brand-accent-dark shimmer"
             >
-              شروع رایگان
+              ساخت رایگان ربات
+              <ArrowLeft className="h-5 w-5 transition group-hover:-translate-x-1" />
             </Link>
-            <a href="#how" className="text-base font-bold text-brand-blue transition hover:text-brand-blue-dark">
-              چطور کار می‌کند؟ ←
+            <a
+              href="#pricing"
+              className="rounded-full border border-white/15 px-7 py-4 text-base font-bold text-white/85 transition hover:border-white/40 hover:bg-white/5"
+            >
+              مشاهده‌ی قیمت‌ها
             </a>
           </div>
-          <p className="mt-5 text-sm font-medium text-brand-muted">
-            ۵ پیام اول هر ربات رایگان — بدون نیاز به کارت بانکی
-          </p>
+
+          <ul className="mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/55 lg:justify-start">
+            {["۵ پیام اول رایگان", "بدون کارت بانکی", "لغو در هر زمان"].map((t) => (
+              <li key={t} className="flex items-center gap-1.5">
+                <Check className="h-4 w-4 text-brand-teal" />
+                {t}
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className="flex justify-center md:justify-end">
-          <ChatMockup />
+
+        <div id="demo" className="flex scroll-mt-28 justify-center">
+          <div className="relative w-full max-w-[360px]">
+            <FloatingChip className="-left-32 top-28" delay="0s" icon={Zap} title="پاسخ آنی" sub="کمتر از ۱ ثانیه" tone="accent" />
+            <FloatingChip className="-left-40 top-[300px]" delay="-1.5s" icon={MoonStar} title="۳ بامداد" sub="ربات هنوز بیدار است" tone="blue" />
+            <FloatingChip className="-left-28 bottom-16" delay="-3s" icon={ShoppingBag} title="سفارش جدید" sub="همین الان ثبت شد" tone="teal" />
+            <BotDemo />
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function ChatMockup() {
+function FloatingChip({
+  className,
+  delay,
+  icon: Icon,
+  title,
+  sub,
+  tone,
+}: {
+  className: string;
+  delay: string;
+  icon: typeof Zap;
+  title: string;
+  sub: string;
+  tone: "accent" | "blue" | "teal";
+}) {
+  const tones = {
+    accent: "bg-brand-accent",
+    blue: "bg-brand-blue",
+    teal: "bg-brand-teal",
+  };
   return (
-    <div className="animate-float w-full max-w-sm rounded-4xl border border-slate-200 bg-white p-3 shadow-2xl shadow-slate-300/50">
-      <div className="flex items-center gap-3 rounded-2xl bg-brand-blue px-4 py-3 text-white">
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-sm font-bold">
-          🛍️
-        </span>
-        <div>
-          <p className="text-sm font-bold">ربات فروشگاه نمونه</p>
-          <p className="text-xs text-white/80">آنلاین</p>
-        </div>
+    <div
+      className={`animate-float absolute z-20 hidden items-center gap-2.5 rounded-2xl border border-white/10 bg-white/10 px-3.5 py-2.5 shadow-2xl backdrop-blur-xl xl:flex ${className}`}
+      style={{ animationDelay: delay }}
+    >
+      <span className={`flex h-9 w-9 items-center justify-center rounded-xl text-white ${tones[tone]}`}>
+        <Icon className="h-4.5 w-4.5" />
+      </span>
+      <div>
+        <p className="text-xs font-extrabold text-white">{title}</p>
+        <p className="text-[11px] text-white/60">{sub}</p>
       </div>
-      <div className="space-y-3 px-2 py-4">
-        <div className="max-w-[85%] rounded-2xl rounded-tr-sm bg-brand-bg-cool px-4 py-2.5 text-sm text-brand-ink">
-          سلام! به فروشگاه ما خوش اومدید 👋
-        </div>
-        <div className="flex flex-wrap gap-2 pr-2">
-          {["محصولات", "ساعت کاری", "پیگیری سفارش"].map((label) => (
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Use-case marquee
+// ---------------------------------------------------------------------------
+
+const useCases = [
+  "👗 فروشگاه پوشاک",
+  "📚 آموزشگاه زبان",
+  "🧠 کلینیک روان‌شناسی",
+  "💄 فروشگاه آرایشی",
+  "🎨 دوره‌ی طراحی",
+  "🥗 مشاوره‌ی تغذیه",
+  "📱 فروشگاه موبایل",
+  "🧮 کلاس کنکور",
+  "⚖️ دفتر مشاوره‌ی حقوقی",
+  "🍰 شیرینی‌پزی خانگی",
+];
+
+function UseCaseMarquee() {
+  return (
+    <div className="relative border-b border-slate-100 bg-white py-6">
+      <p className="mb-4 text-center text-xs font-bold text-brand-muted">مناسب برای هر کسب‌وکاری که در تلگرام مشتری دارد</p>
+      <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+        <div className="animate-marquee flex w-max gap-3">
+          {[...useCases, ...useCases].map((u, i) => (
             <span
-              key={label}
-              className="rounded-full border border-brand-blue/30 px-3 py-1.5 text-xs font-bold text-brand-blue"
+              key={i}
+              className="whitespace-nowrap rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-bold text-slate-600"
             >
-              {label}
+              {u}
             </span>
           ))}
-        </div>
-        <div className="mr-auto max-w-[85%] rounded-2xl rounded-tl-sm bg-brand-accent px-4 py-2.5 text-sm text-white">
-          ساعت کاری‌تون چیه؟
-        </div>
-        <div className="max-w-[85%] rounded-2xl rounded-tr-sm bg-brand-bg-cool px-4 py-2.5 text-sm text-brand-ink">
-          هر روز از ساعت ۹ صبح تا ۹ شب باز هستیم 🕘
         </div>
       </div>
     </div>
   );
 }
 
-function TrustStrip() {
-  const items = [
-    { icon: Zap, text: "راه‌اندازی در چند دقیقه" },
-    { icon: ShieldCheck, text: "بدون نیاز به کارت بانکی برای شروع" },
-    { icon: Sparkles, text: "پشتیبانی فارسی" },
+// ---------------------------------------------------------------------------
+// Before / after
+// ---------------------------------------------------------------------------
+
+function BeforeAfter() {
+  const before = [
+    "جواب دادن به «قیمتش چنده؟» برای صدمین بار",
+    "پیام‌هایی که نیمه‌شب می‌رسند و صبح بی‌جواب مانده‌اند",
+    "مشتری‌ای که برای پیگیری سفارش سه بار پیام می‌دهد",
+    "فرستادن دستی لینک دوره برای هر دانشجو",
+  ];
+  const after = [
+    "ربات سوالات تکراری را خودش و فوراً جواب می‌دهد",
+    "۲۴ ساعته، ۷ روز هفته، حتی در تعطیلات",
+    "مشتری با شماره سفارش، وضعیتش را همان لحظه می‌بیند",
+    "دسترسی به ویدیوهای دوره بعد از تایید پرداخت، خودکار",
   ];
   return (
-    <div className="border-y border-slate-100 bg-white">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-10 gap-y-4 px-5 py-6 text-sm font-bold text-brand-muted sm:justify-between">
-        {items.map(({ icon: Icon, text }) => (
-          <span key={text} className="flex items-center gap-2">
-            <Icon className="h-4.5 w-4.5 text-brand-teal" />
-            {text}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function HowItWorks() {
-  return (
-    <section id="how" className="mx-auto max-w-6xl px-5 py-20">
-      <SectionHeading
-        eyebrow="فرآیند ساده"
-        title="از ثبت‌نام تا ربات فعال، فقط ۴ قدم"
-        desc="نیازی به برنامه‌نویس یا دانش فنی نیست — همه‌چیز از داخل پنل انجام می‌شود."
-      />
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {steps.map((step, i) => (
-          <div
-            key={step.title}
-            className="relative rounded-2xl border border-slate-100 bg-white p-6 shadow-sm shadow-slate-100"
-          >
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-blue text-sm font-extrabold text-white">
-              {i + 1}
-            </span>
-            <h3 className="mt-4 text-base font-extrabold text-brand-ink">{step.title}</h3>
-            <p className="mt-2 text-sm leading-7 text-brand-muted">{step.desc}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Audiences() {
-  return (
-    <section id="audiences" className="bg-brand-bg-warm py-20">
+    <section className="bg-white py-24">
       <div className="mx-auto max-w-6xl px-5">
-        <SectionHeading
-          eyebrow="مناسب چه کسب‌وکارهایی؟"
-          title="تلبینو دقیقاً برای این کسب‌وکارها ساخته شده"
-          desc="هرکدام از این کسب‌وکارها نیازهای متفاوتی دارند؛ تلبینو خودش را با آن‌ها تطبیق می‌دهد."
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {audiences.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="rounded-2xl bg-white p-7 shadow-sm shadow-slate-100">
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-blue/10 text-brand-blue">
-                <Icon className="h-6 w-6" />
-              </span>
-              <h3 className="mt-5 text-lg font-extrabold text-brand-ink">{title}</h3>
-              <p className="mt-2 text-sm leading-7 text-brand-muted">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Features() {
-  return (
-    <section id="features" className="mx-auto max-w-6xl px-5 py-20">
-      <SectionHeading
-        eyebrow="امکانات"
-        title="همه‌چیزی که برای اداره‌ی ربات لازم دارید"
-        desc="از کاتالوگ محصول تا گزارش‌های دقیق، همه در یک پنل ساده و فارسی."
-      />
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {features.map(({ icon: Icon, title, desc }) => (
-          <div
-            key={title}
-            className="rounded-2xl border border-slate-100 p-6 transition hover:-translate-y-1 hover:border-brand-blue/30 hover:shadow-lg hover:shadow-slate-100"
-          >
-            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-accent/10 text-brand-accent">
-              <Icon className="h-5.5 w-5.5" />
-            </span>
-            <h3 className="mt-4 text-sm font-extrabold text-brand-ink">{title}</h3>
-            <p className="mt-2 text-sm leading-7 text-brand-muted">{desc}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Pricing() {
-  return (
-    <section id="pricing" className="bg-brand-bg-cool py-20">
-      <div className="mx-auto max-w-6xl px-5">
-        <SectionHeading
-          eyebrow="قیمت‌گذاری"
-          title="پلنی متناسب با اندازه‌ی کسب‌وکارتان"
-          desc="با پلن رایگان شروع کنید و هر وقت خواستید ارتقا دهید."
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {plans.map((plan) => (
-            <div
-              key={plan.name}
-              className={`rounded-2xl p-7 ${
-                plan.highlighted
-                  ? "relative border-2 border-brand-accent bg-white shadow-xl shadow-orange-100 md:-translate-y-3"
-                  : "border border-slate-200 bg-white"
-              }`}
-            >
-              {plan.highlighted && (
-                <span className="absolute -top-3 right-7 rounded-full bg-brand-accent px-3 py-1 text-xs font-bold text-white">
-                  پیشنهادی
-                </span>
-              )}
-              <h3 className="text-lg font-extrabold text-brand-ink">{plan.name}</h3>
-              <p className="mt-1 text-sm text-brand-muted">{plan.tagline}</p>
-              <ul className="mt-6 space-y-3">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-slate-600">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-teal" />
-                    {f}
+        <Reveal>
+          <SectionHeading
+            eyebrow="چرا تلبینو؟"
+            title="وقت‌تان را برای کارهای مهم‌تر نگه دارید"
+            desc="بیشتر پیام‌های مشتری‌ها تکراری‌اند. بگذارید ربات جواب‌شان را بدهد."
+          />
+        </Reveal>
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
+          <Reveal>
+            <div className="h-full rounded-3xl border border-slate-200 bg-slate-50 p-8">
+              <p className="text-sm font-extrabold text-slate-500">بدون تلبینو</p>
+              <ul className="mt-6 space-y-4">
+                {before.map((t) => (
+                  <li key={t} className="flex items-start gap-3 text-slate-500">
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500">
+                      <X className="h-3.5 w-3.5" strokeWidth={3} />
+                    </span>
+                    <span className="leading-7 line-through decoration-slate-300">{t}</span>
                   </li>
                 ))}
               </ul>
-              <Link
-                href="/login"
-                className={`mt-7 block rounded-full px-5 py-3 text-center text-sm font-bold transition ${
-                  plan.highlighted
-                    ? "bg-brand-accent text-white hover:bg-brand-accent-dark"
-                    : "bg-brand-blue/10 text-brand-blue hover:bg-brand-blue/20"
-                }`}
-              >
-                شروع رایگان
-              </Link>
             </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <div className="relative h-full overflow-hidden rounded-3xl bg-linear-to-br from-brand-blue to-[#1b4fc4] p-8 text-white shadow-2xl shadow-brand-blue/30">
+              <div className="absolute -left-16 -top-16 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
+              <p className="relative text-sm font-extrabold text-white/80">با تلبینو</p>
+              <ul className="relative mt-6 space-y-4">
+                {after.map((t) => (
+                  <li key={t} className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-brand-blue">
+                      <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                    </span>
+                    <span className="leading-7 font-medium">{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal delay={100}>
+          <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
+            {[
+              { value: "۰", label: "خط کد لازم است" },
+              { value: "< ۵ دقیقه", label: "تا اولین ربات فعال" },
+              { value: "۲۴/۷", label: "پاسخ‌گویی بدون وقفه" },
+              { value: "۱۰۰٪", label: "فارسی و راست‌چین" },
+            ].map((s) => (
+              <div key={s.label} className="rounded-2xl border border-slate-100 bg-white p-6 text-center shadow-sm">
+                <p className="text-3xl font-black text-brand-ink">{s.value}</p>
+                <p className="mt-1.5 text-sm text-brand-muted">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Features (bento)
+// ---------------------------------------------------------------------------
+
+function Features() {
+  return (
+    <section id="features" className="bg-dots scroll-mt-20 bg-slate-50 py-24">
+      <div className="mx-auto max-w-6xl px-5">
+        <Reveal>
+          <SectionHeading
+            eyebrow="امکانات"
+            title="یک جعبه‌ابزار کامل، نه فقط یک ربات"
+            desc="هر چیزی که برای فروش و پشتیبانی داخل تلگرام لازم دارید، از همان روز اول."
+          />
+        </Reveal>
+
+        <div className="mt-14 grid gap-5 md:grid-cols-6">
+          <Reveal className="md:col-span-4">
+            <BentoCard
+              icon={MessageCircleQuestion}
+              title="پاسخ‌گویی خودکار هوشمند"
+              desc="سوال را هر طور که مشتری بپرسد — با غلط تایپی یا عبارت متفاوت — ربات جواب درست را پیدا می‌کند."
+            >
+              <div className="mt-6 space-y-2.5">
+                {[
+                  { q: "قیمتش چنده؟", m: 98 },
+                  { q: "قیمت این مدل چقدره", m: 94 },
+                  { q: "چند میدین اینو؟", m: 87 },
+                ].map((r) => (
+                  <div key={r.q} className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-2.5 text-sm">
+                    <span className="text-slate-600">«{r.q}»</span>
+                    <span className="flex items-center gap-2 text-xs font-bold text-brand-teal">
+                      <span className="h-1.5 w-16 overflow-hidden rounded-full bg-slate-200">
+                        <span className="block h-full rounded-full bg-brand-teal" style={{ width: `${r.m}%` }} />
+                      </span>
+                      {r.m.toLocaleString("fa-IR")}٪
+                    </span>
+                  </div>
+                ))}
+                <p className="pt-1 text-xs text-brand-muted">← همه به پاسخ «قیمت محصولات» می‌رسند</p>
+              </div>
+            </BentoCard>
+          </Reveal>
+
+          <Reveal className="md:col-span-2" delay={80}>
+            <BentoCard icon={PackageSearch} title="پیگیری سفارش" desc="مشتری شماره سفارش را می‌فرستد و وضعیت را همان لحظه می‌بیند.">
+              <div className="mt-6 space-y-3">
+                {[
+                  { s: "ثبت شد", done: true },
+                  { s: "در حال آماده‌سازی", done: true },
+                  { s: "ارسال شد", done: true },
+                  { s: "تحویل", done: false },
+                ].map((step, i) => (
+                  <div key={step.s} className="flex items-center gap-3 text-sm">
+                    <span
+                      className={`flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold ${
+                        step.done ? "bg-brand-teal text-white" : "border-2 border-dashed border-slate-300 text-slate-400"
+                      }`}
+                    >
+                      {step.done ? <Check className="h-3.5 w-3.5" strokeWidth={3} /> : (i + 1).toLocaleString("fa-IR")}
+                    </span>
+                    <span className={step.done ? "font-bold text-brand-ink" : "text-slate-400"}>{step.s}</span>
+                  </div>
+                ))}
+              </div>
+            </BentoCard>
+          </Reveal>
+
+          <Reveal className="md:col-span-2">
+            <BentoCard icon={GraduationCap} title="فروش دوره‌ی ویدیویی" desc="ویدیوها را آپلود کنید؛ بعد از پرداخت، دانشجو داخل ربات به جلسات دسترسی دارد." dark>
+              <div className="mt-6 space-y-2">
+                {["جلسه ۱ — مقدمه", "جلسه ۲ — مفاهیم پایه", "جلسه ۳ — پروژه"].map((l, i) => (
+                  <div key={l} className="flex items-center gap-3 rounded-xl bg-white/5 px-3 py-2 text-sm text-white/80">
+                    <span className={`flex h-7 w-7 items-center justify-center rounded-lg ${i < 2 ? "bg-brand-accent" : "bg-white/10"}`}>▶</span>
+                    {l}
+                  </div>
+                ))}
+              </div>
+            </BentoCard>
+          </Reveal>
+
+          <Reveal className="md:col-span-2" delay={80}>
+            <BentoCard icon={Megaphone} title="پیام همگانی" desc="تخفیف یا محصول جدید را با یک کلیک برای همه‌ی مشتری‌ها بفرستید.">
+              <div className="mt-6 rounded-2xl bg-linear-to-br from-brand-accent/10 to-brand-accent/5 p-4">
+                <p className="text-sm font-bold text-brand-ink">🔥 حراج آخر هفته شروع شد!</p>
+                <p className="mt-1 text-xs text-brand-muted">ارسال به ۲٬۴۸۰ مشتری</p>
+                <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white">
+                  <div className="h-full w-4/5 rounded-full bg-brand-accent" />
+                </div>
+              </div>
+            </BentoCard>
+          </Reveal>
+
+          <Reveal className="md:col-span-2" delay={160}>
+            <BentoCard icon={BarChart3} title="گزارش‌های دقیق" desc="مشتریان جدید، پیام‌ها و سوالات بی‌پاسخ را در یک نگاه ببینید.">
+              <div className="mt-6 flex h-24 items-end gap-2">
+                {[35, 55, 40, 70, 60, 85, 100].map((h, i) => (
+                  <div
+                    key={i}
+                    className="flex-1 rounded-t-md bg-linear-to-t from-brand-blue to-brand-teal"
+                    style={{ height: `${h}%`, opacity: 0.45 + i * 0.08 }}
+                  />
+                ))}
+              </div>
+            </BentoCard>
+          </Reveal>
+
+          <Reveal className="md:col-span-3">
+            <BentoCard icon={ClipboardList} title="فرم‌ساز" desc="فرم ثبت‌نام دوره یا رزرو نوبت بسازید؛ ربات سوال‌ها را یکی‌یکی از مشتری می‌پرسد و پاسخ‌ها در پنل ذخیره می‌شود." />
+          </Reveal>
+          <Reveal className="md:col-span-3" delay={80}>
+            <BentoCard icon={Users} title="مدیریت تیم" desc="همکاران‌تان را با نقش کارمند اضافه کنید تا سفارش‌ها و سوالات را با هم مدیریت کنید." />
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BentoCard({
+  icon: Icon,
+  title,
+  desc,
+  dark = false,
+  children,
+}: {
+  icon: typeof Bot;
+  title: string;
+  desc: string;
+  dark?: boolean;
+  children?: React.ReactNode;
+}) {
+  return (
+    <div
+      className={`group h-full rounded-3xl p-7 transition duration-300 hover:-translate-y-1 ${
+        dark
+          ? "bg-brand-ink text-white shadow-xl shadow-slate-900/20"
+          : "border border-slate-200/80 bg-white shadow-sm hover:shadow-xl hover:shadow-slate-200/60"
+      }`}
+    >
+      <span
+        className={`flex h-12 w-12 items-center justify-center rounded-2xl transition group-hover:scale-110 ${
+          dark ? "bg-white/10 text-white" : "bg-brand-blue/10 text-brand-blue"
+        }`}
+      >
+        <Icon className="h-6 w-6" />
+      </span>
+      <h3 className={`mt-5 text-lg font-extrabold ${dark ? "text-white" : "text-brand-ink"}`}>{title}</h3>
+      <p className={`mt-2 text-sm leading-7 ${dark ? "text-white/60" : "text-brand-muted"}`}>{desc}</p>
+      {children}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Audiences
+// ---------------------------------------------------------------------------
+
+const audiences = [
+  {
+    icon: ShoppingBag,
+    title: "فروشگاه‌های آنلاین",
+    gradient: "from-brand-accent to-[#ff9a5a]",
+    points: ["کاتالوگ محصول با عکس و قیمت", "پیگیری سفارش با کد رهگیری", "اطلاع‌رسانی خودکار تغییر وضعیت"],
+  },
+  {
+    icon: GraduationCap,
+    title: "مجموعه‌های آموزشی",
+    gradient: "from-brand-blue to-[#6c9bff]",
+    points: ["فروش و تحویل دوره‌ی ویدیویی", "کنترل دسترسی هر دانشجو", "فرم ثبت‌نام کلاس‌ها"],
+  },
+  {
+    icon: Users2,
+    title: "مراکز مشاوره",
+    gradient: "from-brand-teal to-[#4fd6c6]",
+    points: ["فرم رزرو نوبت", "پاسخ به سوالات رایج مراجعان", "پیام یادآوری همگانی"],
+  },
+];
+
+function Audiences() {
+  return (
+    <section className="bg-white py-24">
+      <div className="mx-auto max-w-6xl px-5">
+        <Reveal>
+          <SectionHeading
+            eyebrow="برای چه کسانی؟"
+            title="ساخته‌شده برای کسب‌وکار شما"
+            desc="تلبینو با نوع کسب‌وکارتان تطبیق پیدا می‌کند — منوها و امکانات مخصوص خودتان."
+          />
+        </Reveal>
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {audiences.map(({ icon: Icon, title, gradient, points }, i) => (
+            <Reveal key={title} delay={i * 100}>
+              <div className="group relative h-full overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 transition hover:border-transparent hover:shadow-2xl hover:shadow-slate-200">
+                <div className={`absolute inset-x-0 top-0 h-1 bg-linear-to-l ${gradient}`} />
+                <span className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br text-white shadow-lg ${gradient}`}>
+                  <Icon className="h-7 w-7" />
+                </span>
+                <h3 className="mt-6 text-xl font-extrabold text-brand-ink">{title}</h3>
+                <ul className="mt-5 space-y-3">
+                  {points.map((p) => (
+                    <li key={p} className="flex items-center gap-2.5 text-sm text-slate-600">
+                      <Check className="h-4 w-4 shrink-0 text-brand-teal" strokeWidth={3} />
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -367,23 +496,175 @@ function Pricing() {
   );
 }
 
+// ---------------------------------------------------------------------------
+// How it works
+// ---------------------------------------------------------------------------
+
+const steps = [
+  { icon: Zap, title: "ثبت‌نام با موبایل", desc: "با شماره موبایل و یک کد تایید، در چند ثانیه وارد پنل شوید." },
+  { icon: Bot, title: "اتصال ربات", desc: "توکن ربات را از BotFather بگیرید و در پنل بچسبانید. همین!" },
+  { icon: ClipboardList, title: "تکمیل اطلاعات", desc: "محصولات، سوالات متداول و فرم‌ها را با چند کلیک اضافه کنید." },
+  { icon: Sparkles, title: "ربات فعال است", desc: "از این لحظه ربات شبانه‌روز به مشتری‌ها جواب می‌دهد." },
+];
+
+function HowItWorks() {
+  return (
+    <section id="how" className="relative scroll-mt-20 overflow-hidden bg-slate-950 py-24 text-white">
+      <div className="bg-grid absolute inset-0" />
+      <div className="relative mx-auto max-w-6xl px-5">
+        <Reveal>
+          <SectionHeading
+            dark
+            eyebrow="شروع در ۴ قدم"
+            title="از ثبت‌نام تا ربات فعال، کمتر از ۵ دقیقه"
+            desc="بدون برنامه‌نویس، بدون سرور، بدون دردسر."
+          />
+        </Reveal>
+        <div className="relative mt-16 grid gap-10 md:grid-cols-4 md:gap-6">
+          <div className="absolute inset-x-[12%] top-8 hidden h-px bg-linear-to-l from-brand-blue via-brand-teal to-brand-accent md:block" />
+          {steps.map(({ icon: Icon, title, desc }, i) => (
+            <Reveal key={title} delay={i * 120}>
+              <div className="relative text-center">
+                <span className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-slate-900 shadow-xl shadow-brand-blue/20">
+                  <Icon className="h-7 w-7 text-brand-teal" />
+                  <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-brand-accent text-xs font-black">
+                    {(i + 1).toLocaleString("fa-IR")}
+                  </span>
+                </span>
+                <h3 className="mt-6 text-base font-extrabold">{title}</h3>
+                <p className="mx-auto mt-2 max-w-[15rem] text-sm leading-7 text-white/55">{desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Pricing
+// ---------------------------------------------------------------------------
+
+function PricingSection() {
+  return (
+    <section id="pricing" className="scroll-mt-20 bg-linear-to-b from-brand-bg-cool to-white py-24">
+      <div className="mx-auto max-w-6xl px-5">
+        <Reveal>
+          <SectionHeading
+            eyebrow="قیمت‌ها"
+            title="شفاف، ساده، بدون هزینه‌ی پنهان"
+            desc="پلنی را انتخاب کنید که با اندازه‌ی کسب‌وکارتان جور است. هر زمان خواستید ارتقا دهید."
+          />
+        </Reveal>
+        <Pricing />
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-bold text-brand-muted">
+          <span className="flex items-center gap-2">
+            <ShieldCheck className="h-5 w-5 text-brand-teal" />
+            پرداخت امن با درگاه زرین‌پال
+          </span>
+          <span className="flex items-center gap-2">
+            <Repeat className="h-5 w-5 text-brand-teal" />
+            تغییر پلن در هر زمان
+          </span>
+          <span className="flex items-center gap-2">
+            <Clock className="h-5 w-5 text-brand-teal" />
+            فعال‌سازی فوری بعد از پرداخت
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// FAQ
+// ---------------------------------------------------------------------------
+
+const faqs = [
+  {
+    q: "برای ساخت ربات نیاز به برنامه‌نویسی دارم؟",
+    a: "خیر. همه‌چیز از داخل پنل و با چند کلیک انجام می‌شود. فقط کافی است یک ربات در BotFather تلگرام بسازید و توکن آن را در پنل وارد کنید.",
+  },
+  {
+    q: "آیا می‌توانم قبل از خرید امتحان کنم؟",
+    a: "بله. بعد از ثبت‌نام، ۵ پیام اول هر ربات رایگان است تا ببینید ربات دقیقاً چطور به مشتری‌ها جواب می‌دهد — بدون نیاز به کارت بانکی.",
+  },
+  {
+    q: "اگر پیام‌های ماهانه‌ام تمام شود چه می‌شود؟",
+    a: "در پنل، میزان مصرف را همیشه می‌بینید و هر زمان بخواهید با یک کلیک به پلن بالاتر ارتقا می‌دهید.",
+  },
+  {
+    q: "پرداخت چطور انجام می‌شود؟",
+    a: "پرداخت از طریق درگاه امن زرین‌پال و با همه‌ی کارت‌های عضو شتاب انجام می‌شود و اشتراک بلافاصله فعال می‌شود.",
+  },
+  {
+    q: "می‌توانم چند ربات برای چند کسب‌وکار داشته باشم؟",
+    a: "بله. پلن کسب‌وکار تا ۳ ربات و پلن حرفه‌ای تا ۲۰ ربات را پشتیبانی می‌کند.",
+  },
+];
+
+function Faq() {
+  return (
+    <section id="faq" className="scroll-mt-20 bg-white py-24">
+      <div className="mx-auto max-w-3xl px-5">
+        <Reveal>
+          <SectionHeading eyebrow="سوالات متداول" title="سوالی دارید؟" desc="جواب پرتکرارترین سوال‌ها اینجاست." />
+        </Reveal>
+        <div className="mt-12 space-y-3">
+          {faqs.map((f, i) => (
+            <Reveal key={f.q} delay={i * 60}>
+              <details className="group rounded-2xl border border-slate-200 bg-white px-6 transition open:border-brand-blue/30 open:bg-brand-bg-cool/50 open:shadow-sm">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-base font-bold text-brand-ink [&::-webkit-details-marker]:hidden">
+                  {f.q}
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-lg text-brand-muted transition group-open:rotate-45 group-open:bg-brand-blue group-open:text-white">
+                    +
+                  </span>
+                </summary>
+                <p className="pb-5 text-sm leading-8 text-brand-muted">{f.a}</p>
+              </details>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Final CTA + footer
+// ---------------------------------------------------------------------------
+
 function FinalCta() {
   return (
-    <section className="mx-auto max-w-6xl px-5 py-20">
-      <div className="rounded-3xl bg-brand-blue px-8 py-14 text-center">
-        <h2 className="text-2xl font-extrabold text-white sm:text-3xl">
-          همین امروز ربات تلگرامی خودتان را راه‌اندازی کنید
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-base leading-8 text-white/80">
-          ثبت‌نام رایگان است و در کمتر از چند دقیقه اولین ربات‌تان را می‌سازید.
-        </p>
-        <Link
-          href="/login"
-          className="mt-8 inline-block rounded-full bg-brand-accent px-8 py-3.5 text-base font-bold text-white shadow-lg shadow-orange-950/20 transition hover:-translate-y-0.5 hover:bg-brand-accent-dark"
-        >
-          شروع رایگان
-        </Link>
-      </div>
+    <section className="bg-white px-5 pb-24">
+      <Reveal>
+        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-slate-950 px-8 py-20 text-center text-white">
+          <div className="bg-grid absolute inset-0" />
+          <div className="animate-blob absolute -right-20 -top-20 h-80 w-80 rounded-full bg-brand-blue/50 blur-[100px]" />
+          <div className="animate-blob absolute -bottom-24 -left-10 h-80 w-80 rounded-full bg-brand-accent/40 blur-[100px]" style={{ animationDelay: "-6s" }} />
+          <div className="relative">
+            <h2 className="mx-auto max-w-2xl text-3xl font-black leading-[1.5] sm:text-4xl">
+              همین امشب، ربات‌تان جای شما <span className="text-gradient">بیدار می‌ماند</span>
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl text-base leading-8 text-white/60">
+              ثبت‌نام رایگان است. در کمتر از ۵ دقیقه اولین ربات‌تان را بسازید و ببینید چقدر وقت‌تان آزاد می‌شود.
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Link
+                href="/login"
+                className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-brand-accent px-9 py-4 text-base font-bold text-white shadow-[0_10px_40px_-8px_rgba(255,106,57,0.7)] transition hover:-translate-y-0.5 shimmer"
+              >
+                ساخت رایگان ربات
+                <ArrowLeft className="h-5 w-5 transition group-hover:-translate-x-1" />
+              </Link>
+              <a href="#pricing" className="text-sm font-bold text-white/70 transition hover:text-white">
+                یا مستقیم یک پلن بخرید ←
+              </a>
+            </div>
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }
@@ -391,20 +672,31 @@ function FinalCta() {
 function SiteFooter() {
   return (
     <footer className="border-t border-slate-100 bg-white">
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-10 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-blue text-sm font-extrabold text-white">
-            ت
-          </span>
-          <span className="text-sm font-extrabold text-brand-ink">تلبینو</span>
+      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-[2fr_1fr_1fr]">
+        <div>
+          <Logo />
+          <p className="mt-4 max-w-sm text-sm leading-7 text-brand-muted">
+            پلتفرم ساخت ربات تلگرام بدون کدنویسی برای فروشگاه‌ها، آموزشگاه‌ها و مراکز مشاوره‌ی ایرانی.
+          </p>
         </div>
-        <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-brand-muted">
-          <a href="#features" className="transition hover:text-brand-blue">امکانات</a>
-          <a href="#pricing" className="transition hover:text-brand-blue">قیمت‌گذاری</a>
-          <a href="#" className="transition hover:text-brand-blue">تماس با ما</a>
-          <a href="#" className="transition hover:text-brand-blue">حریم خصوصی</a>
-        </nav>
-        <p className="text-xs text-brand-muted">© {new Date().getFullYear()} تلبینو — تمامی حقوق محفوظ است.</p>
+        <div>
+          <p className="text-sm font-extrabold text-brand-ink">محصول</p>
+          <nav className="mt-4 grid gap-2.5 text-sm text-brand-muted">
+            <a href="#features" className="transition hover:text-brand-blue">امکانات</a>
+            <a href="#pricing" className="transition hover:text-brand-blue">قیمت‌ها</a>
+            <a href="#faq" className="transition hover:text-brand-blue">سوالات متداول</a>
+          </nav>
+        </div>
+        <div>
+          <p className="text-sm font-extrabold text-brand-ink">حساب کاربری</p>
+          <nav className="mt-4 grid gap-2.5 text-sm text-brand-muted">
+            <Link href="/login" className="transition hover:text-brand-blue">ورود به پنل</Link>
+            <Link href="/login" className="transition hover:text-brand-blue">ثبت‌نام رایگان</Link>
+          </nav>
+        </div>
+      </div>
+      <div className="border-t border-slate-100 py-6 text-center text-xs text-brand-muted">
+        © {new Date().getFullYear()} تلبینو — تمامی حقوق محفوظ است.
       </div>
     </footer>
   );
@@ -414,16 +706,26 @@ function SectionHeading({
   eyebrow,
   title,
   desc,
+  dark = false,
 }: {
   eyebrow: string;
   title: string;
   desc: string;
+  dark?: boolean;
 }) {
   return (
     <div className="mx-auto max-w-2xl text-center">
-      <span className="text-xs font-extrabold uppercase tracking-wide text-brand-accent">{eyebrow}</span>
-      <h2 className="mt-3 text-2xl font-extrabold text-brand-ink sm:text-3xl">{title}</h2>
-      <p className="mt-3 text-base leading-8 text-brand-muted">{desc}</p>
+      <span
+        className={`inline-block rounded-full px-3.5 py-1 text-xs font-extrabold ${
+          dark ? "bg-white/10 text-brand-teal" : "bg-brand-accent/10 text-brand-accent"
+        }`}
+      >
+        {eyebrow}
+      </span>
+      <h2 className={`mt-4 text-3xl font-black leading-[1.45] sm:text-4xl ${dark ? "text-white" : "text-brand-ink"}`}>
+        {title}
+      </h2>
+      <p className={`mt-4 text-base leading-8 ${dark ? "text-white/60" : "text-brand-muted"}`}>{desc}</p>
     </div>
   );
 }

@@ -41,16 +41,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Send the user back to where they were headed (e.g. a checkout link from
+    // the landing page's pricing section) once they've logged in.
+    const loginUrl = `/login?next=${encodeURIComponent(window.location.pathname + window.location.search)}`;
     const token = tokenStorage.get();
     if (!token) {
-      router.replace("/login");
+      router.replace(loginUrl);
       return;
     }
     getMe(token)
       .then(setUser)
       .catch(() => {
         tokenStorage.clear();
-        router.replace("/login");
+        router.replace(loginUrl);
       })
       .finally(() => setLoading(false));
   }, [router]);
@@ -82,7 +85,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </div>
           <nav className="flex-1 space-y-1 overflow-y-auto p-3">
             {navItems.map(({ href, label, icon: Icon }) => {
-              const active = pathname === href;
+              const active = href === "/dashboard" ? pathname === href : pathname.startsWith(href);
               return (
                 <Link
                   key={href}
