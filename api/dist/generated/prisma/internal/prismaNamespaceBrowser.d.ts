@@ -26,6 +26,7 @@ export declare const ModelName: {
     readonly Bot: "Bot";
     readonly Broadcast: "Broadcast";
     readonly UnansweredQuestion: "UnansweredQuestion";
+    readonly ContactMessage: "ContactMessage";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export declare const TransactionIsolationLevel: {
@@ -187,6 +188,17 @@ export declare const UnansweredQuestionScalarFieldEnum: {
     readonly askedAt: "askedAt";
 };
 export type UnansweredQuestionScalarFieldEnum = (typeof UnansweredQuestionScalarFieldEnum)[keyof typeof UnansweredQuestionScalarFieldEnum];
+export declare const ContactMessageScalarFieldEnum: {
+    readonly id: "id";
+    readonly name: "name";
+    readonly phone: "phone";
+    readonly email: "email";
+    readonly topic: "topic";
+    readonly message: "message";
+    readonly isRead: "isRead";
+    readonly createdAt: "createdAt";
+};
+export type ContactMessageScalarFieldEnum = (typeof ContactMessageScalarFieldEnum)[keyof typeof ContactMessageScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";

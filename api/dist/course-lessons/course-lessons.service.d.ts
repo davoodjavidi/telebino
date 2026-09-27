@@ -8,36 +8,36 @@ export declare class CourseLessonsService {
     constructor(prisma: PrismaService, arvanVideo: ArvanVideoService);
     list(businessId: string, productId: string): Promise<{
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         productId: string;
         title: string;
         order: number;
         arvanVideoId: string | null;
         status: LessonStatus;
         durationSeconds: number | null;
-        createdAt: Date;
-        updatedAt: Date;
     }[]>;
     createWithUpload(businessId: string, productId: string, dto: UpsertCourseLessonDto, localFilePath: string, mimeType: string): Promise<{
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         productId: string;
         title: string;
         order: number;
         arvanVideoId: string | null;
         status: LessonStatus;
         durationSeconds: number | null;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     update(businessId: string, productId: string, id: string, dto: UpsertCourseLessonDto): Promise<{
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         productId: string;
         title: string;
         order: number;
         arvanVideoId: string | null;
         status: LessonStatus;
         durationSeconds: number | null;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     remove(businessId: string, productId: string, id: string): Promise<{
         deleted: boolean;

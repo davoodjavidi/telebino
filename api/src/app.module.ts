@@ -21,6 +21,7 @@ import { BotsModule } from "./bots/bots.module.js";
 import { BroadcastModule } from "./broadcast/broadcast.module.js";
 import { AdminAuthModule } from "./admin-auth/admin-auth.module.js";
 import { AdminModule } from "./admin/admin.module.js";
+import { ContactModule } from "./contact/contact.module.js";
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { AdminModule } from "./admin/admin.module.js";
     BroadcastModule,
     AdminAuthModule,
     AdminModule,
+    ContactModule,
   ],
 })
 export class AppModule {}

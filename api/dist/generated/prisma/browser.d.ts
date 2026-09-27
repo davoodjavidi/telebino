@@ -17,3 +17,4 @@ export type FormSubmission = Prisma.FormSubmissionModel;
 export type Bot = Prisma.BotModel;
 export type Broadcast = Prisma.BroadcastModel;
 export type UnansweredQuestion = Prisma.UnansweredQuestionModel;
+export type ContactMessage = Prisma.ContactMessageModel;

@@ -1,8 +1,11 @@
 import { AdminService } from "./admin.service.js";
 import { UpdateBusinessDto } from "./dto/update-business.dto.js";
+import { ContactService } from "../contact/contact.service.js";
+import { UpdateContactMessageDto } from "./dto/update-contact-message.dto.js";
 export declare class AdminController {
     private readonly admin;
-    constructor(admin: AdminService);
+    private readonly contact;
+    constructor(admin: AdminService, contact: ContactService);
     listBusinesses(): Promise<{
         id: string;
         name: string;
@@ -40,5 +43,25 @@ export declare class AdminController {
             date: string;
             count: number;
         }[];
+    }>;
+    listContactMessages(): import("../generated/prisma/internal/prismaNamespace.js").PrismaPromise<{
+        id: string;
+        email: string | null;
+        name: string;
+        createdAt: Date;
+        phone: string;
+        topic: string;
+        message: string;
+        isRead: boolean;
+    }[]>;
+    updateContactMessage(id: string, dto: UpdateContactMessageDto): Promise<{
+        id: string;
+        email: string | null;
+        name: string;
+        createdAt: Date;
+        phone: string;
+        topic: string;
+        message: string;
+        isRead: boolean;
     }>;
 }

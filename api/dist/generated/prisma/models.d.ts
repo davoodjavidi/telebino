@@ -13,4 +13,5 @@ export type * from './models/FormSubmission.js';
 export type * from './models/Bot.js';
 export type * from './models/Broadcast.js';
 export type * from './models/UnansweredQuestion.js';
+export type * from './models/ContactMessage.js';
 export type * from './commonInputTypes.js';

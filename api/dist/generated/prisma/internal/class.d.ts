@@ -75,5 +75,8 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     get unansweredQuestion(): Prisma.UnansweredQuestionDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
+    get contactMessage(): Prisma.ContactMessageDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
 }
 export declare function getPrismaClientClass(): PrismaClientConstructor;
