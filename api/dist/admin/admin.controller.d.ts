@@ -18,10 +18,10 @@ export declare class AdminController {
     updateBusiness(id: string, dto: UpdateBusinessDto): Promise<{
         id: string;
         name: string;
-        createdAt: Date;
         type: import("../generated/prisma/enums.js").BusinessType;
         planTier: import("../generated/prisma/enums.js").PlanTier;
         isSubscriptionActive: boolean;
+        createdAt: Date;
         updatedAt: Date;
     }>;
     stats(): Promise<{
